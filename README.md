@@ -17,6 +17,10 @@ to persisting them in infotrygd
 #### Running locally
 `./gradlew run`
 
+## Add new clients to consume api
+https://github.com/navikt/IaC/tree/master/Azure/registerApplication
+And and then add clients in the list of authorizedUsers in the code
+
 #### Build and run tests
 To build locally and run the integration tests you can simply run `./gradlew shadowJar` or on windows 
 `gradlew.bat shadowJar`
