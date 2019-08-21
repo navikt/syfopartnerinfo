@@ -19,5 +19,4 @@ fun Route.registerBehandlerApi(behandlerService: BehandlerService) {
 
                 call.respond("partnerInformasjon")
             }
-
 }

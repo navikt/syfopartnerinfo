@@ -8,7 +8,7 @@ version = "1.0.0"
 val coroutinesVersion = "1.1.1"
 val jacksonVersion = "2.9.7"
 val kluentVersion = "1.39"
-val ktorVersion = "1.2.3"
+val ktorVersion = "1.2.2"
 val logbackVersion = "1.2.3"
 val logstashEncoderVersion = "5.1"
 val prometheusVersion = "0.5.0"
@@ -21,16 +21,15 @@ val spekjunitVersion = "1.1.5"
 
 plugins {
     java
-    kotlin("jvm") version "1.3.31"
-    id("org.jmailen.kotlinter") version "1.26.0"
-    id("com.diffplug.gradle.spotless") version "3.14.0"
+    kotlin("jvm") version "1.3.41"
+    id("org.jmailen.kotlinter") version "2.1.0"
+    id("com.diffplug.gradle.spotless") version "3.24.0"
     id("com.github.johnrengelman.shadow") version "5.1.0"
 }
 
 repositories {
     maven(url = "https://dl.bintray.com/kotlin/ktor")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
-    maven(url = "http://packages.confluent.io/maven/")
     maven(url = "https://kotlin.bintray.com/kotlinx")
     mavenCentral()
     jcenter()
@@ -73,7 +72,7 @@ dependencies {
     testRuntimeOnly ("org.spekframework.spek2:spek-runner-junit5:$spekVersion") {
         exclude(group = "org.jetbrains.kotlin")
     }
-    testRuntimeOnly("org.jetbrains.spek:spek-junit-platform-engine:$spekjunitVersion")
+    testRuntimeOnly ("org.jetbrains.spek:spek-junit-platform-engine:$spekjunitVersion")
 }
 
 

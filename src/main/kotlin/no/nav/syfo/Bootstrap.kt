@@ -19,18 +19,16 @@ import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.HttpStatusCode.Companion.BadRequest
-import io.ktor.http.HttpStatusCode.Companion.InternalServerError
-import io.ktor.http.HttpStatusCode.Companion.NotFound
 import io.ktor.jackson.jackson
 import io.ktor.metrics.micrometer.MicrometerMetrics
 import io.ktor.request.header
 import io.ktor.response.respond
 import io.ktor.routing.Route
-import io.ktor.routing.get
 import io.ktor.routing.route
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import io.ktor.util.KtorExperimentalAPI
 import io.micrometer.core.instrument.Clock
 import io.micrometer.core.instrument.binder.jvm.ClassLoaderMetrics
 import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics
@@ -41,14 +39,14 @@ import io.micrometer.core.instrument.binder.system.ProcessorMetrics
 import io.micrometer.prometheus.PrometheusConfig
 import io.micrometer.prometheus.PrometheusMeterRegistry
 import io.prometheus.client.CollectorRegistry
-import no.nav.syfo.api.registerBehandlerApi
-import no.nav.syfo.services.BehandlerService
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import java.net.URL
 import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
 import javax.xml.datatype.DatatypeFactory
+import no.nav.syfo.api.registerBehandlerApi
+import no.nav.syfo.services.BehandlerService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 val log: Logger = LoggerFactory.getLogger("no.nav.syfo.behandler-elektronisk-kommunikasjon")
 
@@ -80,8 +78,20 @@ fun main() {
         setupAuth(environment, authorizedUsers)
         setupContentNegotiation()
         setupMetrics()
+        initRouting(applicationState, behandlerService)
 
-        routing {
+        applicationState.ready = true
+    }.start(wait = true)
+
+    Runtime.getRuntime().addShutdownHook(Thread {
+        applicationState.ready = false
+        applicationServer.stop(10, 10, TimeUnit.SECONDS)
+    })
+}
+
+@KtorExperimentalAPI
+fun Application.initRouting(applicationState: ApplicationState, behandlerService: BehandlerService) {
+    routing {
             registerNaisApi(readynessCheck = { applicationState.ready }, livenessCheck = { applicationState.running })
             route("/api") {
                 enforceCallId()
@@ -89,16 +99,7 @@ fun main() {
                     registerBehandlerApi(behandlerService)
                 }
             }
-        }
-        applicationState.ready = true
-    }.start(wait = true)
-
-    Runtime.getRuntime().addShutdownHook(Thread {
-        // Kubernetes polls every 5 seconds for liveness, mark as not ready and wait 5 seconds for a new readyness check
-        applicationState.ready = false
-        Thread.sleep(10000)
-        applicationServer.stop(10, 10, TimeUnit.SECONDS)
-    })
+    }
 }
 
 private fun Application.setupMetrics() {
@@ -175,4 +176,3 @@ fun Application.setupAuth(environment: Environment, authorizedUsers: List<String
         }
     }
 }
-

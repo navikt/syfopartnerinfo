@@ -11,15 +11,15 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.handleRequest
+import java.net.ServerSocket
+import java.time.LocalDateTime
+import java.util.concurrent.TimeUnit
 import no.nav.syfo.Environment
 import no.nav.syfo.setupAuth
 import no.nav.syfo.setupContentNegotiation
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import java.net.ServerSocket
-import java.time.LocalDateTime
-import java.util.concurrent.TimeUnit
 
 object AuthorizationSpek : Spek({
 
