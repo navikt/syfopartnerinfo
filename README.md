@@ -37,4 +37,4 @@ Creating a docker image should be as simple as `docker build -t behandler-elektr
 * Joakim Kartveit, `joakim.kartveit@nav.no`
 
 ### For NAV employees
-We are available at the Slack channel #team-sykemelding
+We are available at the Slack channel #team-sykmelding

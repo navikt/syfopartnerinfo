@@ -44,7 +44,7 @@ import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
 import javax.xml.datatype.DatatypeFactory
 import no.nav.syfo.api.registerBehandlerApi
-import no.nav.syfo.services.BehandlerService
+import no.nav.syfo.services.ElektroniskAbonomentService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -61,6 +61,7 @@ const val NAV_CALLID = "Nav-CallId"
 
 data class ApplicationState(var running: Boolean = true, var ready: Boolean = true)
 
+@KtorExperimentalAPI
 fun main() {
     val environment = Environment()
     val credentials: VaultCredentials = objectMapper.readValue(Paths.get(environment.vaultPath).toFile())
@@ -70,7 +71,7 @@ fun main() {
         environment.syfosmmottakClientId
     )
 
-    val behandlerService = BehandlerService("1355")
+    val behandlerService = ElektroniskAbonomentService("1355")
 
     val applicationServer = embeddedServer(Netty, 8080) {
         errorHandling()
@@ -90,13 +91,13 @@ fun main() {
 }
 
 @KtorExperimentalAPI
-fun Application.initRouting(applicationState: ApplicationState, behandlerService: BehandlerService) {
+fun Application.initRouting(applicationState: ApplicationState, elektroniskAbonomentService: ElektroniskAbonomentService) {
     routing {
             registerNaisApi(readynessCheck = { applicationState.ready }, livenessCheck = { applicationState.running })
             route("/api") {
                 enforceCallId()
                 authenticate {
-                    registerBehandlerApi(behandlerService)
+                    registerBehandlerApi(elektroniskAbonomentService)
                 }
             }
     }

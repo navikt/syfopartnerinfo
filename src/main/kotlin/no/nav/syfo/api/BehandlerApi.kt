@@ -7,9 +7,9 @@ import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.get
 import no.nav.syfo.log
-import no.nav.syfo.services.BehandlerService
+import no.nav.syfo.services.ElektroniskAbonomentService
 
-fun Route.registerBehandlerApi(behandlerService: BehandlerService) {
+fun Route.registerBehandlerApi(elektroniskAbonomentService: ElektroniskAbonomentService) {
     get("/behandler") {
         val herid = call.request.header("herid") ?: run {
             call.respond(HttpStatusCode.BadRequest, "Mangler header `herid` med herid")
