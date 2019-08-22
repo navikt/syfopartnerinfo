@@ -10,7 +10,6 @@ data class Environment(
     val jwtIssuer: String = getEnvVar("JWT_ISSUER"),
     val clientId: String = getEnvVar("CLIENT_ID"),
     val syfosmmottakClientId: String = getEnvVar("SYFOSMMOTTAK_CLIENT_ID"),
-    val vaultPath: String = "/var/run/secrets/nais.io/vault/credentials.json",
     val databaseUrl: String = getEnvVar("DATABASE_URL")
 )
 

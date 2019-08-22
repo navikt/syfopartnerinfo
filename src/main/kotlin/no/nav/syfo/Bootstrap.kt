@@ -1,6 +1,7 @@
 package no.nav.syfo
 
 import com.auth0.jwk.JwkProviderBuilder
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -42,7 +43,6 @@ import io.prometheus.client.CollectorRegistry
 import java.net.URL
 import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
-import javax.xml.datatype.DatatypeFactory
 import no.nav.syfo.api.registerBehandlerApi
 import no.nav.syfo.db.Database
 import no.nav.syfo.db.DatabaseInterface
@@ -55,9 +55,9 @@ val log: Logger = LoggerFactory.getLogger("no.nav.syfo.behandler-elektronisk-kom
 val objectMapper: ObjectMapper = ObjectMapper().apply {
     registerKotlinModule()
     registerModule(JavaTimeModule())
+    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
 }
-val datatypeFactory: DatatypeFactory = DatatypeFactory.newInstance()
 
 const val NAV_CALLID = "Nav-CallId"
 
@@ -66,23 +66,24 @@ data class ApplicationState(var running: Boolean = true, var ready: Boolean = tr
 @KtorExperimentalAPI
 fun main() {
     val environment = Environment()
-    val credentials: VaultCredentials = objectMapper.readValue(Paths.get(environment.vaultPath).toFile())
+    val vaultSecrets = objectMapper.readValue<VaultCredentials>(Paths.get("/var/run/secrets/nais.io/vault/credentials.json").toFile())
+
     val applicationState = ApplicationState()
 
     val authorizedUsers = listOf(
         environment.syfosmmottakClientId
     )
 
-    val database = Database(environment, credentials)
+    val database = Database(environment, vaultSecrets)
 
     val behandlerService = ElektroniskAbonomentService(database)
 
     val applicationServer = embeddedServer(Netty, 8080) {
-        errorHandling()
-        callLogging()
-        setupAuth(environment, authorizedUsers)
-        setupContentNegotiation()
-        setupMetrics()
+        // errorHandling()
+        // callLogging()
+        // setupAuth(environment, authorizedUsers)
+        // setupContentNegotiation()
+        // setupMetrics()
         initRouting(applicationState, behandlerService, database)
 
         applicationState.ready = true
