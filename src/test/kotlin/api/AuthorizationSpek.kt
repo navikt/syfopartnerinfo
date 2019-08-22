@@ -32,7 +32,8 @@ object AuthorizationSpek : Spek({
         jwtIssuer = "https://sts.issuer.net/myid",
         clientId = "helsenett-clientId",
         vaultPath = "src/test/resources/credentials.json",
-        syfosmmottakClientId = "syfosmmottakClientId"
+        syfosmmottakClientId = "syfosmmottakClientId",
+        databaseUrl = "jdbcurl"
     )
 
     describe("Authorization") {

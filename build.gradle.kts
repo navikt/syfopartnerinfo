@@ -18,7 +18,7 @@ val smCommonVersion = "2019.08.08-03-52-c78281e2409af36f3ef07df4369fa29b0ea81a46
 val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
-val ojdbc8Version = "12.2.0.1"
+val hikariVersion = "3.3.0"
 
 plugins {
     java
@@ -62,7 +62,7 @@ dependencies {
 
     implementation ("org.apache.commons:commons-text:$commonsTextVersion")
 
-    runtime ("com.oracle:ojdbc8:$ojdbc8Version")
+    implementation("com.zaxxer:HikariCP:$hikariVersion")
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
