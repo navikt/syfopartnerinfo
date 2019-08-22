@@ -18,6 +18,7 @@ val smCommonVersion = "2019.08.08-03-52-c78281e2409af36f3ef07df4369fa29b0ea81a46
 val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
+val ojdbc8Version = "12.2.0.1"
 
 plugins {
     java
@@ -60,6 +61,8 @@ dependencies {
     implementation ("no.nav.syfo.sm:syfosm-common-networking:$smCommonVersion")
 
     implementation ("org.apache.commons:commons-text:$commonsTextVersion")
+
+    runtime ("com.oracle:ojdbc8:$ojdbc8Version")
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")

@@ -6,10 +6,11 @@ import io.ktor.request.header
 import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.get
+import no.nav.syfo.db.DatabaseInterface
 import no.nav.syfo.log
 import no.nav.syfo.services.ElektroniskAbonomentService
 
-fun Route.registerBehandlerApi(elektroniskAbonomentService: ElektroniskAbonomentService) {
+fun Route.registerBehandlerApi(elektroniskAbonomentService: ElektroniskAbonomentService, database: DatabaseInterface) {
     get("/behandler") {
         val herid = call.request.header("herid") ?: run {
             call.respond(HttpStatusCode.BadRequest, "Mangler header `herid` med herid")

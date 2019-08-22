@@ -44,6 +44,8 @@ import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
 import javax.xml.datatype.DatatypeFactory
 import no.nav.syfo.api.registerBehandlerApi
+import no.nav.syfo.db.Database
+import no.nav.syfo.db.DatabaseInterface
 import no.nav.syfo.services.ElektroniskAbonomentService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -71,7 +73,9 @@ fun main() {
         environment.syfosmmottakClientId
     )
 
-    val behandlerService = ElektroniskAbonomentService("1355")
+    val database = Database(environment, credentials)
+
+    val behandlerService = ElektroniskAbonomentService(database)
 
     val applicationServer = embeddedServer(Netty, 8080) {
         errorHandling()
@@ -79,7 +83,7 @@ fun main() {
         setupAuth(environment, authorizedUsers)
         setupContentNegotiation()
         setupMetrics()
-        initRouting(applicationState, behandlerService)
+        initRouting(applicationState, behandlerService, database)
 
         applicationState.ready = true
     }.start(wait = true)
@@ -91,13 +95,17 @@ fun main() {
 }
 
 @KtorExperimentalAPI
-fun Application.initRouting(applicationState: ApplicationState, elektroniskAbonomentService: ElektroniskAbonomentService) {
+fun Application.initRouting(
+    applicationState: ApplicationState,
+    elektroniskAbonomentService: ElektroniskAbonomentService,
+    database: DatabaseInterface
+) {
     routing {
             registerNaisApi(readynessCheck = { applicationState.ready }, livenessCheck = { applicationState.running })
             route("/api") {
                 enforceCallId()
                 authenticate {
-                    registerBehandlerApi(elektroniskAbonomentService)
+                    registerBehandlerApi(elektroniskAbonomentService, database)
                 }
             }
     }
