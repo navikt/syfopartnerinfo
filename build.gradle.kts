@@ -18,7 +18,9 @@ val smCommonVersion = "2019.08.08-03-52-c78281e2409af36f3ef07df4369fa29b0ea81a46
 val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
-val hikariVersion = "3.3.0"
+val hikariVersion = "3.3.1"
+val ojdbc8Version = "11.2.0.3.0"
+val h2Version = "1.4.199"
 
 plugins {
     java
@@ -32,6 +34,7 @@ repositories {
     maven(url = "https://dl.bintray.com/kotlin/ktor")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
+    maven(url = "http://maven.icm.edu.pl/artifactory/repo/")
     mavenCentral()
     jcenter()
 }
@@ -62,12 +65,14 @@ dependencies {
 
     implementation ("org.apache.commons:commons-text:$commonsTextVersion")
 
-    implementation("com.zaxxer:HikariCP:$hikariVersion")
+    implementation ("com.zaxxer:HikariCP:$hikariVersion")
+    runtimeOnly ("com.oracle.jdbc:ojdbc8:$ojdbc8Version")
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
     testImplementation ("com.nimbusds:nimbus-jose-jwt:$nimbusjosejwtVersion")
     testImplementation ("io.ktor:ktor-server-test-host:$ktorVersion")
+    testImplementation ("com.h2database:h2:$h2Version")
 
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion") {
         exclude(group = "org.jetbrains.kotlin")
