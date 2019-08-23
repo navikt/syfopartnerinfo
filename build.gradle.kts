@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "no.nav.syfo"
@@ -17,7 +15,6 @@ val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
 val hikariVersion = "3.3.1"
-val ojdbc8Version = "11.2.0.3.0"
 
 plugins {
     kotlin("jvm") version "1.3.41"
@@ -30,7 +27,6 @@ repositories {
     maven(url = "https://dl.bintray.com/kotlin/ktor")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
-    maven(url = "http://maven.icm.edu.pl/artifactory/repo/")
     maven(url = "https://oss.sonatype.org/content/groups/staging/")
     mavenCentral()
     jcenter()
@@ -58,7 +54,6 @@ dependencies {
     implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
     implementation ("com.zaxxer:HikariCP:$hikariVersion")
-    runtimeOnly ("com.oracle.jdbc:ojdbc8:$ojdbc8Version")
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
