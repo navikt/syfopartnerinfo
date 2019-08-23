@@ -10,7 +10,7 @@ val jacksonVersion = "2.9.7"
 val kluentVersion = "1.39"
 val ktorVersion = "1.2.2"
 val logbackVersion = "1.2.3"
-val logstashEncoderVersion = "5.1"
+val logstashEncoderVersion = "6.1"
 val prometheusVersion = "0.5.0"
 val spekVersion = "2.0.5"
 val micrometerRegistryPrometheusVersion = "1.1.5"
@@ -20,7 +20,6 @@ val hikariVersion = "3.3.1"
 val ojdbc8Version = "11.2.0.3.0"
 
 plugins {
-    java
     kotlin("jvm") version "1.3.41"
     id("org.jmailen.kotlinter") version "2.1.0"
     id("com.diffplug.gradle.spotless") version "3.24.0"
@@ -32,12 +31,13 @@ repositories {
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
     maven(url = "http://maven.icm.edu.pl/artifactory/repo/")
+    maven(url = "https://oss.sonatype.org/content/groups/staging/")
     mavenCentral()
     jcenter()
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation ("io.ktor:ktor-metrics-micrometer:$ktorVersion")
@@ -88,13 +88,6 @@ tasks {
     }
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
-    }
-
-    withType<ShadowJar> {
-        transform(ServiceFileTransformer::class.java) {
-            setPath("META-INF/cxf")
-            include("bus-extensions.txt")
-        }
     }
 
     withType<Test> {
