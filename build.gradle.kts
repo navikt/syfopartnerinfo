@@ -15,6 +15,13 @@ val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
 val hikariVersion = "3.3.1"
+val jaxbBasicAntVersion = "1.11.1"
+val javaxAnnotationApiVersion = "1.3.2"
+val jaxwsToolsVersion = "2.3.1"
+val jaxbRuntimeVersion = "2.4.0-b180830.0438"
+val javaxJaxwsApiVersion = "2.2.1"
+val jaxbApiVersion = "2.4.0-b180830.0359"
+val javaxActivationVersion = "1.1.1"
 
 plugins {
     kotlin("jvm") version "1.3.41"
@@ -52,6 +59,15 @@ dependencies {
     implementation ("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
     implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+
+    implementation("javax.xml.ws:jaxws-api:$javaxJaxwsApiVersion")
+    implementation("javax.annotation:javax.annotation-api:$javaxAnnotationApiVersion")
+    implementation("javax.xml.bind:jaxb-api:$jaxbApiVersion")
+    implementation("org.glassfish.jaxb:jaxb-runtime:$jaxbRuntimeVersion")
+    implementation("javax.activation:activation:$javaxActivationVersion")
+    implementation("com.sun.xml.ws:jaxws-tools:$jaxwsToolsVersion") {
+        exclude(group = "com.sun.xml.ws", module = "policy")
+    }
 
     implementation ("com.zaxxer:HikariCP:$hikariVersion")
 
