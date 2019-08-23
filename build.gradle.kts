@@ -13,14 +13,11 @@ val logbackVersion = "1.2.3"
 val logstashEncoderVersion = "5.1"
 val prometheusVersion = "0.5.0"
 val spekVersion = "2.0.5"
-val commonsTextVersion = "1.4"
-val smCommonVersion = "2019.08.08-03-52-c78281e2409af36f3ef07df4369fa29b0ea81a46"
 val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
 val hikariVersion = "3.3.1"
 val ojdbc8Version = "11.2.0.3.0"
-val h2Version = "1.4.199"
 
 plugins {
     java
@@ -60,11 +57,6 @@ dependencies {
     implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
-    implementation ("no.nav.syfo.sm:syfosm-common-ws:$smCommonVersion")
-    implementation ("no.nav.syfo.sm:syfosm-common-networking:$smCommonVersion")
-
-    implementation ("org.apache.commons:commons-text:$commonsTextVersion")
-
     implementation ("com.zaxxer:HikariCP:$hikariVersion")
     runtimeOnly ("com.oracle.jdbc:ojdbc8:$ojdbc8Version")
 
@@ -72,7 +64,6 @@ dependencies {
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
     testImplementation ("com.nimbusds:nimbus-jose-jwt:$nimbusjosejwtVersion")
     testImplementation ("io.ktor:ktor-server-test-host:$ktorVersion")
-    testImplementation ("com.h2database:h2:$h2Version")
 
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion") {
         exclude(group = "org.jetbrains.kotlin")

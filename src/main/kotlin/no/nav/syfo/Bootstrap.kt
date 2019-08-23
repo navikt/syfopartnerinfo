@@ -47,9 +47,10 @@ import no.nav.syfo.api.registerBehandlerApi
 import no.nav.syfo.db.Database
 import no.nav.syfo.db.DatabaseInterface
 import no.nav.syfo.services.ElektroniskAbonomentService
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-val log = LoggerFactory.getLogger("no.nav.syfo.behandlerElektroniskKommunikasjon")
+val log: Logger = LoggerFactory.getLogger("no.nav.syfo.behandlerElektroniskKommunikasjon")
 
 val objectMapper: ObjectMapper = ObjectMapper().apply {
     registerKotlinModule()
