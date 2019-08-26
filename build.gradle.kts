@@ -22,9 +22,10 @@ val jaxbRuntimeVersion = "2.4.0-b180830.0438"
 val javaxJaxwsApiVersion = "2.2.1"
 val jaxbApiVersion = "2.4.0-b180830.0359"
 val javaxActivationVersion = "1.1.1"
+val ojdbc8Version = "12.2.0.1"
 
 plugins {
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm") version "1.3.50"
     id("org.jmailen.kotlinter") version "2.1.0"
     id("com.diffplug.gradle.spotless") version "3.24.0"
     id("com.github.johnrengelman.shadow") version "5.1.0"
@@ -35,6 +36,14 @@ repositories {
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
     maven(url = "https://oss.sonatype.org/content/groups/staging/")
+    maven {
+        url = uri("https://www.oracle.com/content/secure/maven/content")
+        credentials {
+            username = "nicabeta@email-wizard.com"
+            password = "MQEemoh3pOsRAn2c4tjh"
+        }
+    }
+    //http://bugmenot.com/view/oracle.com
     mavenCentral()
     jcenter()
 }
@@ -70,6 +79,7 @@ dependencies {
     }
 
     implementation ("com.zaxxer:HikariCP:$hikariVersion")
+    runtimeOnly("com.oracle.jdbc:ojdbc8:12.1.0.2")
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
