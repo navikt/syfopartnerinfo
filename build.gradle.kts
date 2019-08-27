@@ -29,7 +29,7 @@ plugins {
     id("org.jmailen.kotlinter") version "2.1.0"
     id("com.diffplug.gradle.spotless") version "3.24.0"
     id("com.github.johnrengelman.shadow") version "5.1.0"
-    id ("de.undercouch.download") version "4.0.0"
+    id("de.undercouch.download") version "4.0.0"
 }
 
 repositories {
@@ -72,7 +72,7 @@ dependencies {
     }
 
     implementation ("com.zaxxer:HikariCP:$hikariVersion")
-    implementation (files("$buildDir/ojdbc8.jar"))
+    compile (files("$buildDir/download/ojdbc8.jar"))
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
@@ -104,6 +104,12 @@ tasks {
         kotlinOptions.jvmTarget = "1.8"
     }
 
+    withType<Download> {
+        src ("https://github.com/navikt/oracle-ojdbc8/blob/master/ojdbc8.jar")
+        dest("$buildDir/download")
+        overwrite(false)
+    }
+
     withType<Test> {
         useJUnitPlatform {
             includeEngines("spek2")
@@ -113,10 +119,8 @@ tasks {
         }
     }
 
-    withType<Download> {
-        src ("https://github.com/navikt/oracle-ojdbc8/blob/master/ojdbc8.jar")
-        dest(file("$buildDir"))
-        overwrite(false)
+    "check" {
+        dependsOn("formatKotlin")
     }
 
 }
