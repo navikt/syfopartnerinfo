@@ -22,7 +22,7 @@ val jaxbRuntimeVersion = "2.4.0-b180830.0438"
 val javaxJaxwsApiVersion = "2.2.1"
 val jaxbApiVersion = "2.4.0-b180830.0359"
 val javaxActivationVersion = "1.1.1"
-val ojdbc8Version = "12.2.0.1"
+val ojdbc8Version = "19.3.0.0"
 
 plugins {
     kotlin("jvm") version "1.3.50"
@@ -32,19 +32,13 @@ plugins {
 }
 
 repositories {
+    mavenCentral()
+    jcenter()
     maven(url = "https://dl.bintray.com/kotlin/ktor")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
     maven(url = "https://oss.sonatype.org/content/groups/staging/")
-    maven {
-        setUrl( "https://maven.pkg.github.com/navikt/infotrygd-oracle")
-        credentials {
-            username = System.getenv("GITHUB_USER")
-            password = System.getenv("GITHUB_TOKEN")
-        }
-    }
-    mavenCentral()
-    jcenter()
+
 }
 
 dependencies {
@@ -78,7 +72,7 @@ dependencies {
     }
 
     implementation ("com.zaxxer:HikariCP:$hikariVersion")
-    implementation ("com.oracle:ojdbc8:$ojdbc8Version")
+    implementation ("com.oracle.ojdbc:ojdbc8:$ojdbc8Version")
 
     testImplementation ("org.amshove.kluent:kluent:$kluentVersion")
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
