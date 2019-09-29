@@ -1,6 +1,8 @@
-package no.nav.syfo.db
+package no.nav.syfo.aksessering.db
 
 import java.sql.ResultSet
+import no.nav.syfo.db.DatabaseInterface
+import no.nav.syfo.db.toList
 import no.nav.syfo.services.ElektroniskAbonoment
 
 fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskAbonoment> =

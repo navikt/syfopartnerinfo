@@ -8,6 +8,7 @@ to persisting them in infotrygd
 * Gradle
 * Spek
 * Vault
+* Oracle DB
 
 #### Requirements
 
@@ -24,7 +25,6 @@ And and then add clients in the list of authorizedUsers in the code
 #### Build and run tests
 To build locally and run the integration tests you can simply run `./gradlew shadowJar` or on windows 
 `gradlew.bat shadowJar`
-
 
 #### Creating a docker image
 Creating a docker image should be as simple as `docker build -t behandler-elektronisk-kommunikasjon .`
