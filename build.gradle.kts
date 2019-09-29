@@ -38,6 +38,7 @@ repositories {
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
     maven(url = "https://oss.sonatype.org/content/groups/staging/")
+    maven(url = "https://repo1.maven.org/maven2/")
 
 }
 
