@@ -22,7 +22,7 @@ class Database(private val env: Environment, private val vaultCredentialService:
             maximumPoolSize = 3
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"
-            driverClassName = "oracle.jdbc.OracleDriver"
+            driverClassName = "oracle.jdbc.driver.OracleDriver"
             validate()
         })
     }
