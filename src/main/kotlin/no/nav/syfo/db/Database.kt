@@ -6,9 +6,6 @@ import java.sql.Connection
 import java.sql.ResultSet
 import no.nav.syfo.Environment
 import no.nav.syfo.VaultCredentials
-import java.sql.DriverManager
-
-
 
 class Database(private val env: Environment, private val vaultCredentialService: VaultCredentials) : DatabaseInterface {
 

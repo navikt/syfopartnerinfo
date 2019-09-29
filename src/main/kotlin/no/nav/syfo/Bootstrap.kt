@@ -12,7 +12,6 @@ import io.ktor.application.ApplicationCallPipeline
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.auth.Authentication
-import io.ktor.auth.authenticate
 import io.ktor.auth.jwt.JWTPrincipal
 import io.ktor.auth.jwt.jwt
 import io.ktor.features.CallLogging
@@ -21,7 +20,6 @@ import io.ktor.features.StatusPages
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.HttpStatusCode.Companion.BadRequest
 import io.ktor.jackson.jackson
-import io.ktor.metrics.micrometer.MicrometerMetrics
 import io.ktor.request.header
 import io.ktor.response.respond
 import io.ktor.routing.Route
@@ -30,16 +28,6 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.util.KtorExperimentalAPI
-import io.micrometer.core.instrument.Clock
-import io.micrometer.core.instrument.binder.jvm.ClassLoaderMetrics
-import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics
-import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics
-import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics
-import io.micrometer.core.instrument.binder.logging.LogbackMetrics
-import io.micrometer.core.instrument.binder.system.ProcessorMetrics
-import io.micrometer.prometheus.PrometheusConfig
-import io.micrometer.prometheus.PrometheusMeterRegistry
-import io.prometheus.client.CollectorRegistry
 import java.net.URL
 import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
@@ -83,7 +71,6 @@ fun main() {
         // callLogging()
         // setupAuth(environment, authorizedUsers)
         // setupContentNegotiation()
-        // setupMetrics()
         initRouting(applicationState, behandlerService, database)
 
         applicationState.ready = true
@@ -105,24 +92,8 @@ fun Application.initRouting(
             registerNaisApi(readynessCheck = { applicationState.ready }, livenessCheck = { applicationState.running })
             route("/api") {
                 enforceCallId()
-                authenticate {
                     registerBehandlerApi(elektroniskAbonomentService, database)
-                }
             }
-    }
-}
-
-private fun Application.setupMetrics() {
-    install(MicrometerMetrics) {
-        registry = PrometheusMeterRegistry(PrometheusConfig.DEFAULT, CollectorRegistry.defaultRegistry, Clock.SYSTEM)
-        meterBinders = listOf(
-            ClassLoaderMetrics(),
-            JvmMemoryMetrics(),
-            JvmGcMetrics(),
-            ProcessorMetrics(),
-            JvmThreadMetrics(),
-            LogbackMetrics()
-        )
     }
 }
 
