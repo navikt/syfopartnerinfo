@@ -44,8 +44,8 @@ spec:
     - name: AADDISCOVERY_URL
       value: https://login.microsoftonline.com/navno.onmicrosoft.com/.well-known/openid-configuration
     - name: JWT_ISSUER
-      vaule: https://sts.windows.net/62366534-1ec3-4962-8869-9b5535279d0b/
+      value: https://sts.windows.net/62366534-1ec3-4962-8869-9b5535279d0b/
     - name: SYFOSMMOTTAK_CLIENT_ID
-      vaule: 8ed7cd5f-5b91-4af4-89e9-791ae25dc4d1
+      value: 8ed7cd5f-5b91-4af4-89e9-791ae25dc4d1
     - name: DATABASE_URL
-      vaule: jdbc:oracle:thin:@a01dbfl030.adeo.no:1521/emottak
+      value: jdbc:oracle:thin:@a01dbfl030.adeo.no:1521/emottak
