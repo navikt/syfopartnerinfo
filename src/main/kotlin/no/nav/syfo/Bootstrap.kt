@@ -42,4 +42,6 @@ fun main() {
     val applicationServer = ApplicationServer(applicationEngine)
 
     applicationServer.start()
+
+    applicationState.ready = true
 }
