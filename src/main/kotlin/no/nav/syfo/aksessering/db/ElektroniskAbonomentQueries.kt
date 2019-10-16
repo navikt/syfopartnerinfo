@@ -14,7 +14,7 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
                 WHERE partner.PARTNER_ID = abonnement.PARTNER_ID
                 AND abonnement.tjeneste_id = '3'
                 AND (abonnement.SLUTT_DATO > sysdate or abonnement.SLUTT_DATO is NULL)
-                AND partner.her_id=?;
+                AND partner.her_id=?
                 """
             ).use {
                 it.setString(1, herid)

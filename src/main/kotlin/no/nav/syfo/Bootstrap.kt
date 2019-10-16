@@ -23,8 +23,6 @@ val objectMapper: ObjectMapper = ObjectMapper().apply {
     configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
 }
 
-const val NAV_CALLID = "Nav-CallId"
-
 val log: Logger = LoggerFactory.getLogger("no.nav.syfo.behandlerElektroniskKommunikasjon")
 
 @KtorExperimentalAPI

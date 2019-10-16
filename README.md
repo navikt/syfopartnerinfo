@@ -1,6 +1,6 @@
+[![Build status](https://github.com/navikt/behandler-elektronisk-kommunikasjon/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)](https://github.com/navikt/behandler-elektronisk-kommunikasjon/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)
 # behandler-elektronisk-kommunikasjon
-Application for handling rules used for infotrygd and later on persisting them in infotrygd or create a manuall task
-to persisting them in infotrygd
+Application for getting out herid that has electronic communications
 
 ## Technologies used
 * Kotlin
@@ -35,6 +35,9 @@ Creating a docker image should be as simple as `docker build -t behandler-elektr
 ## Contact us
 ### Code/project related questions can be sent to
 * Joakim Kartveit, `joakim.kartveit@nav.no`
+* Andreas Nilsen, `andreas.nilsen@nav.no`
+* Sebastian Knudsen, `sebastian.knudsen@nav.no`
+* Tia Firing, `tia.firing@nav.no`
 
 ### For NAV employees
 We are available at the Slack channel #team-sykmelding
