@@ -6,11 +6,11 @@ version = "1.0.0"
 val coroutinesVersion = "1.1.1"
 val jacksonVersion = "2.9.7"
 val kluentVersion = "1.39"
-val ktorVersion = "1.2.2"
+val ktorVersion = "1.2.5"
 val logbackVersion = "1.2.3"
 val logstashEncoderVersion = "6.1"
 val prometheusVersion = "0.5.0"
-val spekVersion = "2.0.5"
+val spekVersion = "2.0.8"
 val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
@@ -26,7 +26,7 @@ val ojdbc8Version = "19.3.0.0"
 
 plugins {
     kotlin("jvm") version "1.3.50"
-    id("org.jmailen.kotlinter") version "2.1.0"
+    id("org.jmailen.kotlinter") version "2.1.1"
     id("com.diffplug.gradle.spotless") version "3.24.0"
     id("com.github.johnrengelman.shadow") version "5.1.0"
 }
@@ -37,8 +37,8 @@ repositories {
     maven(url = "https://dl.bintray.com/kotlin/ktor")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
-    maven(url = "https://oss.sonatype.org/content/groups/staging/")
     maven(url = "https://repo1.maven.org/maven2/")
+    maven(url = "https://oss.sonatype.org/content/groups/staging/")
 
 }
 

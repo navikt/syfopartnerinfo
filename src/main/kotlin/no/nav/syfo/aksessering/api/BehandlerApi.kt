@@ -13,7 +13,7 @@ import no.nav.syfo.services.ElektroniskAbonomentService
 fun Routing.registerBehandlerApi(elektroniskAbonomentService: ElektroniskAbonomentService) {
     route("/api/v1") {
         get("/behandler") {
-            log.info("Recived call to /api/v1/hentManuellOppgave")
+            log.info("Recived call to /api/v1/behandler")
             val herid = call.request.queryParameters["herid"]
 
             if (herid.isNullOrEmpty()) {

@@ -10,7 +10,7 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
             connection.prepareStatement(
                     """
                 SELECT partner.partner_id
-                FROM PARTNER as partner, ABONNEMENT abonnement
+                FROM PARTNER partner, ABONNEMENT abonnement
                 WHERE partner.PARTNER_ID = abonnement.PARTNER_ID
                 AND abonnement.tjeneste_id = '3'
                 AND (abonnement.SLUTT_DATO > sysdate or abonnement.SLUTT_DATO is NULL)
