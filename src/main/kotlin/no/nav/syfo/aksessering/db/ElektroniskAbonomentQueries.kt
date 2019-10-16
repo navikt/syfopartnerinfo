@@ -24,5 +24,5 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
 
 fun ResultSet.toElektroniskAbonoment(): ElektroniskAbonoment =
         ElektroniskAbonoment(
-                getInt("partner_id")
+                getBigDecimal("partner_id").toInt()
         )

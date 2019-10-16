@@ -1,6 +1,6 @@
 [![Build status](https://github.com/navikt/behandler-elektronisk-kommunikasjon/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)](https://github.com/navikt/behandler-elektronisk-kommunikasjon/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)
 # behandler-elektronisk-kommunikasjon
-Application for getting out herid that has electronic communications
+Application for getting out partner-id that has electronic communications
 
 ## Technologies used
 * Kotlin
