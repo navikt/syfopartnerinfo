@@ -9,9 +9,12 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
         connection.use { connection ->
             connection.prepareStatement(
                     """
-                SELECT partner_id
-                FROM PARTNER
-                WHERE her_id=?
+                SELECT partner.partner_id
+                FROM PARTNER partner, ABONNEMENT abonnement
+                WHERE partner.PARTNER_ID = abonnement.PARTNER_ID
+                AND abonnement.tjeneste_id = '3'
+                AND (abonnement.SLUTT_DATO > sysdate or abonnement.SLUTT_DATO is NULL)
+                AND partner.her_id=?
                 """
             ).use {
                 it.setString(1, herid)
@@ -21,13 +24,5 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
 
 fun ResultSet.toElektroniskAbonoment(): ElektroniskAbonoment =
         ElektroniskAbonoment(
-                getString(0).trim().toInt()
+                getBigDecimal("partner_id").toInt()
         )
-
-/*
-*  SELECT partner.partner_id
-                FROM PARTNER partner, ABONNEMENT abonnement
-                WHERE partner.PARTNER_ID = abonnement.PARTNER_ID
-                AND abonnement.tjeneste_id = '3'
-                AND (abonnement.SLUTT_DATO > sysdate or abonnement.SLUTT_DATO is NULL)
-                AND partner.her_id=?*/
