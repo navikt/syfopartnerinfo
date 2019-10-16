@@ -39,7 +39,7 @@ fun main() {
     val behandlerService = ElektroniskAbonomentService(database)
 
     val applicationEngine = createApplicationEngine(environment, applicationState, behandlerService)
-    val applicationServer = ApplicationServer(applicationEngine)
+    val applicationServer = ApplicationServer(applicationEngine, applicationState)
 
     applicationServer.start()
 
