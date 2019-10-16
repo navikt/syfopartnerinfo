@@ -11,7 +11,7 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
                     """
                 SELECT partner_id
                 FROM PARTNER
-                WHERE partner.her_id=?
+                WHERE her_id=?
                 """
             ).use {
                 it.setString(1, herid)
@@ -21,7 +21,7 @@ fun DatabaseInterface.hentElektroniskAbonoment(herid: String): List<ElektroniskA
 
 fun ResultSet.toElektroniskAbonoment(): ElektroniskAbonoment =
         ElektroniskAbonoment(
-                getString("partner_id").toInt()
+                getBigDecimal("partner_id").toInt()
         )
 
 /*
