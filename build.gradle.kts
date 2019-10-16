@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "no.nav.syfo"
 version = "1.0.0"
 
-val coroutinesVersion = "1.1.1"
+val coroutinesVersion = "1.2.2"
 val jacksonVersion = "2.9.7"
 val kluentVersion = "1.39"
 val ktorVersion = "1.2.5"
@@ -43,17 +43,15 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(kotlin("stdlib"))
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation ("io.ktor:ktor-metrics-micrometer:$ktorVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$coroutinesVersion")
     implementation ("io.micrometer:micrometer-registry-prometheus:$micrometerRegistryPrometheusVersion")
 
     implementation ("io.ktor:ktor-server-netty:$ktorVersion")
     implementation ("io.ktor:ktor-jackson:$ktorVersion")
     implementation ("io.ktor:ktor-auth:$ktorVersion")
     implementation ("io.ktor:ktor-auth-jwt:$ktorVersion")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$ktorVersion")
 
     implementation ("ch.qos.logback:logback-classic:$logbackVersion")
     implementation ("net.logstash.logback:logstash-logback-encoder:$logstashEncoderVersion")
