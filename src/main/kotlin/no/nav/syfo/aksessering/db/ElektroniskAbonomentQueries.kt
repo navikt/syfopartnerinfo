@@ -13,7 +13,7 @@ fun DatabaseInterface.hentElektroniskAbonoment(
             connection.prepareStatement(
                     """
                 SELECT partner.partner_id
-                FROM ${databasePrefix}.PARTNER partner, ${databasePrefix}.ABONNEMENT abonnement
+                FROM $databasePrefix.PARTNER partner, $databasePrefix.ABONNEMENT abonnement
                 WHERE partner.PARTNER_ID = abonnement.PARTNER_ID
                 AND abonnement.tjeneste_id = '3'
                 AND (abonnement.SLUTT_DATO > sysdate or abonnement.SLUTT_DATO is NULL)
