@@ -51,3 +51,5 @@ spec:
       value: 589446d0-4e9d-41be-ae18-b6d001a8a328
     - name: DATABASE_URL
       value: jdbc:oracle:thin:@a01dbfl033.adeo.no:1521/emottak_q1
+    - name: DATABASE_PREFIX
+      value: emottak_q1

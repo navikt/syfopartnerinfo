@@ -10,7 +10,8 @@ data class Environment(
     val jwtIssuer: String = getEnvVar("JWT_ISSUER"),
     val clientId: String = getEnvVar("CLIENT_ID"),
     val syfosmmottakClientId: String = getEnvVar("SYFOSMMOTTAK_CLIENT_ID"),
-    val databaseUrl: String = getEnvVar("DATABASE_URL")
+    val databaseUrl: String = getEnvVar("DATABASE_URL"),
+    val databasePrefix: String = getEnvVar("DATABASE_PREFIX")
 )
 
 data class VaultCredentials(

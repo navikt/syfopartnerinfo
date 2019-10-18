@@ -34,7 +34,7 @@ fun main() {
 
     val database = Database(environment, vaultSecrets)
 
-    val behandlerService = ElektroniskAbonomentService(database)
+    val behandlerService = ElektroniskAbonomentService(database, environment.databasePrefix)
 
     val applicationEngine = createApplicationEngine(environment, applicationState, behandlerService)
     val applicationServer = ApplicationServer(applicationEngine, applicationState)
