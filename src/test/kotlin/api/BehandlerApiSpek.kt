@@ -15,7 +15,7 @@ import io.ktor.routing.routing
 import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.handleRequest
 import io.mockk.mockk
-import java.nio.file.Path
+import java.nio.file.Paths
 import no.nav.syfo.Environment
 import no.nav.syfo.aksessering.api.registerBehandlerApi
 import no.nav.syfo.application.authentication.setupAuth
@@ -38,7 +38,7 @@ class BehandlerApiSpek : Spek({
                 databaseUrl = "",
                 databasePrefix = "")
         val path = "src/test/resources/jwkset.json"
-        val uri = Path.of(path).toUri().toURL()
+        val uri = Paths.get(path).toUri().toURL()
         val jwkProvider = JwkProviderBuilder(uri).build()
         receiver.application.install(ContentNegotiation) {
             jackson {
