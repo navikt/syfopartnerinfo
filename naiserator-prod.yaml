@@ -50,6 +50,6 @@ spec:
     - name: DATABASE_URL
       value: jdbc:oracle:thin:@a01dbfl030.adeo.no:1521/emottak
     - name: DATABASE_PREFIX
-      value: emottak
+      value: nmp5
     - name: ALLOWED_APP_IDS
       value: 9d4d6e11-1717-44f7-b76c-1a671847bb32,6af19f7a-8e7c-48f0-9518-d827e483774a
