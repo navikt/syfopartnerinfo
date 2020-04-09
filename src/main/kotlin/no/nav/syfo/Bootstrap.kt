@@ -15,7 +15,7 @@ import no.nav.syfo.application.ApplicationServer
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.createApplicationEngine
 import no.nav.syfo.db.Database
-import no.nav.syfo.services.ElektroniskAbonomentService
+import no.nav.syfo.services.PartnerInformasjonService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -43,9 +43,9 @@ fun main() {
 
     val database = Database(environment, vaultSecrets)
 
-    val behandlerService = ElektroniskAbonomentService(database, environment.databasePrefix)
+    val partnerInformasjonService = PartnerInformasjonService(database, environment.databasePrefix)
 
-    val applicationEngine = createApplicationEngine(environment, applicationState, jwkProvider, behandlerService)
+    val applicationEngine = createApplicationEngine(environment, applicationState, jwkProvider, partnerInformasjonService)
     val applicationServer = ApplicationServer(applicationEngine, applicationState)
 
     applicationServer.start()
