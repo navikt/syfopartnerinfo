@@ -33,11 +33,6 @@ Creating a docker image should be as simple as `docker build -t behandler-elektr
 `docker run --rm -it -p 8080:8080 behandler-elektronisk-kommunikasjon`
 
 ## Contact us
-### Code/project related questions can be sent to
-* Joakim Kartveit, `joakim.kartveit@nav.no`
-* Andreas Nilsen, `andreas.nilsen@nav.no`
-* Sebastian Knudsen, `sebastian.knudsen@nav.no`
-* Tia Firing, `tia.firing@nav.no`
 
 ### For NAV employees
-We are available at the Slack channel #team-sykmelding
+We are available at the Slack channel #veden
