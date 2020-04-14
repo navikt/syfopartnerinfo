@@ -26,13 +26,13 @@ import no.nav.syfo.aksessering.api.registerBehandlerApi
 import no.nav.syfo.application.api.registerNaisApi
 import no.nav.syfo.application.authentication.setupAuth
 import no.nav.syfo.log
-import no.nav.syfo.services.ElektroniskAbonomentService
+import no.nav.syfo.services.PartnerInformasjonService
 
 fun createApplicationEngine(
     env: Environment,
     applicationState: ApplicationState,
     jwkProvider: JwkProvider,
-    elektroniskAbonomentService: ElektroniskAbonomentService
+    partnerInformasjonService: PartnerInformasjonService
 ): ApplicationEngine =
         embeddedServer(Netty, env.applicationPort) {
             setupAuth(env, jwkProvider)
@@ -40,7 +40,7 @@ fun createApplicationEngine(
                 registerNaisApi(applicationState)
                 route("/api") {
                     authenticate {
-                        registerBehandlerApi(elektroniskAbonomentService)
+                        registerBehandlerApi(partnerInformasjonService)
                     }
                 }
             }

@@ -7,10 +7,10 @@ import io.ktor.routing.Route
 import io.ktor.routing.get
 import io.ktor.routing.route
 import no.nav.syfo.log
-import no.nav.syfo.services.ElektroniskAbonoment
-import no.nav.syfo.services.ElektroniskAbonomentService
+import no.nav.syfo.services.PartnerInformasjon
+import no.nav.syfo.services.PartnerInformasjonService
 
-fun Route.registerBehandlerApi(elektroniskAbonomentService: ElektroniskAbonomentService) {
+fun Route.registerBehandlerApi(partnerInformasjonService: PartnerInformasjonService) {
     route("/v1") {
         get("/behandler") {
             log.info("Recived call to /api/v1/behandler")
@@ -19,11 +19,11 @@ fun Route.registerBehandlerApi(elektroniskAbonomentService: ElektroniskAbonoment
             if (herid.isNullOrEmpty()) {
                 log.info("Mangler query parameters: herid")
                 call.respond(HttpStatusCode.BadRequest)
-            } else if (elektroniskAbonomentService.finnParnterInformasjon(herid).isEmpty()) {
-                log.info("Fant ingen elektroniskAbonoment for akutell herid")
-                call.respond(emptyList<ElektroniskAbonoment>())
+            } else if (partnerInformasjonService.finnPartnerInformasjon(herid).isEmpty()) {
+                log.info("Fant ingen partnerInformasjon for akutell herid")
+                call.respond(emptyList<PartnerInformasjon>())
             } else {
-                call.respond(elektroniskAbonomentService.finnParnterInformasjon(herid))
+                call.respond(partnerInformasjonService.finnPartnerInformasjon(herid))
             }
         }
     }

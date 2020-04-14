@@ -4,7 +4,7 @@ import com.auth0.jwk.JwkProviderBuilder
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import genereateJWT
-import getListElektroniskAbonoment
+import getListPartnerInformasjon
 import io.ktor.application.install
 import io.ktor.auth.authenticate
 import io.ktor.features.ContentNegotiation
@@ -19,14 +19,14 @@ import java.nio.file.Paths
 import no.nav.syfo.Environment
 import no.nav.syfo.aksessering.api.registerBehandlerApi
 import no.nav.syfo.application.authentication.setupAuth
-import no.nav.syfo.services.ElektroniskAbonomentService
+import no.nav.syfo.services.PartnerInformasjonService
 import org.amshove.kluent.shouldBe
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 class BehandlerApiSpek : Spek({
-    val elektroniskAbonomentService: ElektroniskAbonomentService = mockk()
-    io.mockk.coEvery { elektroniskAbonomentService.finnParnterInformasjon(any()) } returns getListElektroniskAbonoment()
+    val partnerInformasjonService: PartnerInformasjonService = mockk()
+    io.mockk.coEvery { partnerInformasjonService.finnPartnerInformasjon(any()) } returns getListPartnerInformasjon()
     fun withTestApplicationForApi(receiver: TestApplicationEngine, block: TestApplicationEngine.() -> Unit) {
         receiver.start()
         val environment = Environment(8080,
@@ -47,7 +47,7 @@ class BehandlerApiSpek : Spek({
             }
         }
         receiver.application.setupAuth(environment, jwkProvider)
-        receiver.application.routing { authenticate { registerBehandlerApi(elektroniskAbonomentService) } }
+        receiver.application.routing { authenticate { registerBehandlerApi(partnerInformasjonService) } }
 
         return receiver.block()
     }
