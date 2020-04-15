@@ -1,5 +1,5 @@
-[![Build status](https://github.com/navikt/behandler-elektronisk-kommunikasjon/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)](https://github.com/navikt/behandler-elektronisk-kommunikasjon/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)
-# behandler-elektronisk-kommunikasjon
+[![Build status](https://github.com/navikt/syfopartnerinfo/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)](https://github.com/navikt/syfopartnerinfo/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)
+# syfopartnerinfo
 Application for getting out partner-id that has electronic communications
 
 ## Technologies used
@@ -27,10 +27,10 @@ To build locally and run the integration tests you can simply run `./gradlew sha
 `gradlew.bat shadowJar`
 
 #### Creating a docker image
-Creating a docker image should be as simple as `docker build -t behandler-elektronisk-kommunikasjon .`
+Creating a docker image should be as simple as `docker build -t syfopartnerinfo .`
 
 #### Running a docker image
-`docker run --rm -it -p 8080:8080 behandler-elektronisk-kommunikasjon`
+`docker run --rm -it -p 8080:8080 syfopartnerinfo`
 
 ## Contact us
 

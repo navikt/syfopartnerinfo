@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: behandler-elektronisk-kommunikasjon
+  name: syfopartnerinfo
   namespace: default
   labels:
     team: {{team}}
@@ -37,10 +37,10 @@ spec:
     enabled: true
   webproxy: true
   ingresses:
-    - "https://behandler-elektronisk-kommunikasjon.nais.adeo.no"
+    - "https://syfopartnerinfo.nais.adeo.no"
   env:
     - name: CLIENT_ID
-      value: c509facf-5195-409e-9e95-26cc498005f7
+      value: 55732aaa-9976-4a7b-8342-2e502a3cdce4
     - name: AADACCESSTOKEN_URL
       value: https://login.microsoftonline.com/navno.onmicrosoft.com/oauth2/token
     - name: AADDISCOVERY_URL

@@ -37,10 +37,10 @@ spec:
     enabled: true
   webproxy: true
   ingresses:
-    - "https://behandler-elektronisk-kommunikasjon.nais.preprod.local"
+    - "https://syfopartnerinfo.nais.preprod.local"
   env:
     - name: CLIENT_ID
-      value: 9c95e7d7-b603-4aeb-a2f6-678ef5259248
+      value: 077b7904-dec5-4d2e-bf69-bb17f56658c2
     - name: AADACCESSTOKEN_URL
       value: https://login.microsoftonline.com/navq.onmicrosoft.com/oauth2/token
     - name: AADDISCOVERY_URL
