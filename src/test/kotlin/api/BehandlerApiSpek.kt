@@ -36,7 +36,10 @@ class BehandlerApiSpek : Spek({
                 aadAccessTokenUrl = "",
                 aadDiscoveryUrl = "",
                 databaseUrl = "",
-                databasePrefix = "")
+                databasePrefix = "",
+                databaseUsername = "",
+                databasePassword = ""
+                )
         val path = "src/test/resources/jwkset.json"
         val uri = Paths.get(path).toUri().toURL()
         val jwkProvider = JwkProviderBuilder(uri).build()

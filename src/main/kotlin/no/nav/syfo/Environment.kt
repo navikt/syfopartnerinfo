@@ -9,19 +9,13 @@ data class Environment(
     val jwkKeysUrl: String = getEnvVar("JWKKEYS_URL", "https://login.microsoftonline.com/common/discovery/keys"),
     val jwtIssuer: String = getEnvVar("JWT_ISSUER"),
     val clientId: String = getEnvVar("CLIENT_ID"),
-    val databaseUrl: String = getEnvVar("DATABASE_URL"),
+    val databaseUrl: String = getEnvVar("EMOTTAK_JDBC_URL"),
     val databasePrefix: String = getEnvVar("DATABASE_PREFIX"),
+    val databaseUsername: String = getEnvVar("EMOTTAK_USERNAME"),
+    val databasePassword: String = getEnvVar("EMOTTAK_PASSWORD"),
     val appIds: List<String> = getEnvVar("ALLOWED_APP_IDS", "")
             .split(",")
             .map { it.trim() }
-)
-
-data class VaultCredentials(
-    val serviceuserUsername: String,
-    val serviceuserPassword: String,
-    val databaseUsername: String,
-    val databasePassword: String
-
 )
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =

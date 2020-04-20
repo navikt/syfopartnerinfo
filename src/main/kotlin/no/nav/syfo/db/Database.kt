@@ -5,9 +5,8 @@ import com.zaxxer.hikari.HikariDataSource
 import java.sql.Connection
 import java.sql.ResultSet
 import no.nav.syfo.Environment
-import no.nav.syfo.VaultCredentials
 
-class Database(private val env: Environment, private val vaultCredentialService: VaultCredentials) : DatabaseInterface {
+class Database(private val env: Environment) : DatabaseInterface {
 
     private val dataSource: HikariDataSource
 
@@ -17,8 +16,8 @@ class Database(private val env: Environment, private val vaultCredentialService:
     init {
         dataSource = HikariDataSource(HikariConfig().apply {
             jdbcUrl = env.databaseUrl
-            username = vaultCredentialService.databaseUsername
-            password = vaultCredentialService.databasePassword
+            username = env.databaseUsername
+            password = env.databasePassword
             maximumPoolSize = 3
             isAutoCommit = false
             driverClassName = "oracle.jdbc.OracleDriver"
