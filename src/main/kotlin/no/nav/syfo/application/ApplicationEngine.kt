@@ -9,11 +9,13 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.auth.authenticate
 import io.ktor.features.CallId
+import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.jackson.jackson
+import io.ktor.request.path
 import io.ktor.response.respond
 import io.ktor.routing.route
 import io.ktor.routing.routing
@@ -27,6 +29,7 @@ import no.nav.syfo.application.api.registerNaisApi
 import no.nav.syfo.application.authentication.setupAuth
 import no.nav.syfo.log
 import no.nav.syfo.services.PartnerInformasjonService
+import org.slf4j.event.Level
 
 fun createApplicationEngine(
     env: Environment,
@@ -64,5 +67,9 @@ fun createApplicationEngine(
                     log.error("Caught exception", cause)
                     throw cause
                 }
+            }
+            install(CallLogging) {
+                level = Level.DEBUG
+                filter { call -> call.request.path().startsWith("/api") }
             }
         }
