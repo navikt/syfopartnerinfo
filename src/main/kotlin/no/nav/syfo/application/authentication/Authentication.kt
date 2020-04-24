@@ -19,6 +19,14 @@ fun Application.setupAuth(environment: Environment, jwkProvider: JwkProvider) {
             validate { credentials ->
                 val appId: String = credentials.payload.getClaim("appid").asString()
                 log.info("authorization attempt for $appId")
+
+                val envappids = environment.appIds.joinToString()
+                log.info("appidid $appId list $envappids")
+
+                val clientId = environment.appIds
+                val aud = credentials.payload.audience
+                log.info("clientid $clientId,  aud $aud")
+
                 if (appId in environment.appIds && environment.clientId in credentials.payload.audience) {
                     log.info("authorization ok")
                     return@validate JWTPrincipal(credentials.payload)
