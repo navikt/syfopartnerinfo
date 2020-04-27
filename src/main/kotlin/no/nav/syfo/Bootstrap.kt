@@ -26,7 +26,7 @@ val objectMapper: ObjectMapper = ObjectMapper().apply {
     configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
 }
 
-val log: Logger = LoggerFactory.getLogger("no.nav.syfo.behandlerElektroniskKommunikasjon")
+val log: Logger = LoggerFactory.getLogger("no.nav.syfo.syfopartnerinfo")
 
 @KtorExperimentalAPI
 fun main() {
