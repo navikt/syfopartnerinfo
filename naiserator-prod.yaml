@@ -36,7 +36,7 @@ spec:
   vault:
     enabled: true
     paths:
-      - kvPath: oracle/data/prod/creds/emottak-srvsyfopartnerinfo
+      - kvPath: oracle/data/prod/creds/emottak-nmp5
         mountPath: /secrets/oracle/creds
       - kvPath: oracle/data/prod/config/emottak
         mountPath: /secrets/oracle/config
