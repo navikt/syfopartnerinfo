@@ -1,12 +1,12 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: behandler-elektronisk-kommunikasjon
+  name: syfopartnerinfo
   namespace: default
   labels:
-    team: {{team}}
+    team: teamsykefravr
 spec:
-  image: "docker.pkg.github.com/navikt/behandler-elektronisk-kommunikasjon:{{tag}}"
+  image: {{ image }}
   replicas:
     min: 1
     max: 2
@@ -35,20 +35,23 @@ spec:
       memory: 128Mi
   vault:
     enabled: true
+    paths:
+      - kvPath: /oracle/data/dev/creds/emottak_q1-nmt3
+        mountPath: /secrets/oracle/creds
+      - kvPath: /oracle/data/dev/config/emottak_q1
+        mountPath: /secrets/oracle/config
   webproxy: true
   ingresses:
-    - "https://behandler-elektronisk-kommunikasjon.nais.preprod.local"
+    - "https://syfopartnerinfo.nais.preprod.local"
   env:
     - name: CLIENT_ID
-      value: 9c95e7d7-b603-4aeb-a2f6-678ef5259248
+      value: 077b7904-dec5-4d2e-bf69-bb17f56658c2
     - name: AADACCESSTOKEN_URL
       value: https://login.microsoftonline.com/navq.onmicrosoft.com/oauth2/token
     - name: AADDISCOVERY_URL
       value: https://login.microsoftonline.com/navq.onmicrosoft.com/.well-known/openid-configuration
     - name: JWT_ISSUER
       value: https://sts.windows.net/966ac572-f5b7-4bbe-aa88-c76419c0f851/
-    - name: DATABASE_URL
-      value: jdbc:oracle:thin:@a01dbfl033.adeo.no:1521/emottak_q1
     - name: DATABASE_PREFIX
       value: nmt3
     - name: ALLOWED_APP_IDS

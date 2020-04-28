@@ -1,1 +1,1 @@
-rootProject.name = "behandler-elektronisk-kommunikasjon"
+rootProject.name = "syfopartnerinfo"

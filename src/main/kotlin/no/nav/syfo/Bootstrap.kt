@@ -26,7 +26,7 @@ val objectMapper: ObjectMapper = ObjectMapper().apply {
     configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
 }
 
-val log: Logger = LoggerFactory.getLogger("no.nav.syfo.behandlerElektroniskKommunikasjon")
+val log: Logger = LoggerFactory.getLogger("no.nav.syfo.syfopartnerinfo")
 
 @KtorExperimentalAPI
 fun main() {
@@ -37,11 +37,9 @@ fun main() {
             .rateLimited(10, 1, TimeUnit.MINUTES)
             .build()
 
-    val vaultSecrets = objectMapper.readValue<VaultCredentials>(Paths.get("/var/run/secrets/nais.io/vault/credentials.json").toFile())
-
     val applicationState = ApplicationState()
 
-    val database = Database(environment, vaultSecrets)
+    val database = Database(environment)
 
     val partnerInformasjonService = PartnerInformasjonService(database, environment.databasePrefix)
 
