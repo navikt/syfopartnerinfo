@@ -14,7 +14,7 @@ fun DatabaseInterface.hentPartnerInformasjon(
                     """
                 SELECT partner.partner_id
                 FROM $databasePrefix.PARTNER partner
-                WHERE partner.her_id=?
+                WHERE TRIM(partner.her_id)=?
                 """
             ).use {
                 it.setString(1, herid)
