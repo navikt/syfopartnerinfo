@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "no.nav.syfo"
 version = "1.0.0"
 
-val coroutinesVersion = "1.2.2"
-val jacksonVersion = "2.9.7"
+val coroutinesVersion = "1.4.2"
+val jacksonVersion = "2.11.3"
 val kluentVersion = "1.61"
 val ktorVersion = "1.3.2"
 val logbackVersion = "1.2.3"
