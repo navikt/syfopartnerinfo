@@ -26,7 +26,7 @@ val ojdbc8Version = "19.3.0.0"
 val mockkVersion = "1.10.5"
 
 plugins {
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.4.21"
     id("org.jmailen.kotlinter") version "2.1.1"
     id("com.diffplug.gradle.spotless") version "3.24.0"
     id("com.github.johnrengelman.shadow") version "5.1.0"
