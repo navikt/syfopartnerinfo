@@ -11,7 +11,6 @@ val logbackVersion = "1.2.3"
 val logstashEncoderVersion = "6.3"
 val prometheusVersion = "0.9.0"
 val spekVersion = "2.0.15"
-val micrometerRegistryPrometheusVersion = "1.1.5"
 val nimbusjosejwtVersion = "7.5.1"
 val spekjunitVersion = "1.1.5"
 val hikariVersion = "3.4.5"
@@ -47,7 +46,9 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$coroutinesVersion")
-    implementation ("io.micrometer:micrometer-registry-prometheus:$micrometerRegistryPrometheusVersion")
+
+    implementation("io.prometheus:simpleclient_hotspot:$prometheusVersion")
+    implementation("io.prometheus:simpleclient_common:$prometheusVersion")
 
     implementation ("io.ktor:ktor-server-netty:$ktorVersion")
     implementation ("io.ktor:ktor-jackson:$ktorVersion")
