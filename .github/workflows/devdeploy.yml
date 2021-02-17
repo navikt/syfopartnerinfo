@@ -5,9 +5,7 @@ on:
       - '*'
       - '!master'
 env:
-  APP_NAME: syfopartnerinfo
   IMAGE: docker.pkg.github.com/${{ github.repository }}/syfopartnerinfo:${{ github.sha }}
-  COMMITER_NAME: ${{ github.event.pusher.name }}
 jobs:
   build-push-deploy:
     name: Checkout code and create docker tag
