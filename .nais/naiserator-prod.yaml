@@ -42,6 +42,7 @@ spec:
         mountPath: /secrets/oracle/config
   webproxy: true
   ingresses:
+    - "https://syfopartnerinfo.intern.nav.no"
     - "https://syfopartnerinfo.nais.adeo.no"
   env:
     - name: CLIENT_ID
