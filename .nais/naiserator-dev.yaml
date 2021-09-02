@@ -33,6 +33,16 @@ spec:
     requests:
       cpu: 100m
       memory: 128Mi
+  accessPolicy:
+    inbound:
+      rules:
+        - application: fastlegerest
+          namespace: teamsykefravr
+          cluster: dev-fss
+  azure:
+    application:
+      enabled: true
+      tenant: trygdeetaten.no
   vault:
     enabled: true
     paths:
