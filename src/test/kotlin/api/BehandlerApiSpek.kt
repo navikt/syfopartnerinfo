@@ -1,16 +1,11 @@
 package api
 
 import com.auth0.jwk.JwkProviderBuilder
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import genereateJWT
 import getListPartnerInformasjon
-import io.ktor.application.install
 import io.ktor.auth.authenticate
-import io.ktor.features.ContentNegotiation
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
-import io.ktor.jackson.jackson
 import io.ktor.routing.routing
 import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.handleRequest
@@ -18,7 +13,8 @@ import io.mockk.mockk
 import java.nio.file.Paths
 import no.nav.syfo.Environment
 import no.nav.syfo.aksessering.api.registerBehandlerApi
-import no.nav.syfo.application.authentication.setupAuth
+import no.nav.syfo.application.api.installContentNegotiation
+import no.nav.syfo.application.authentication.installJwtAuthentication
 import no.nav.syfo.services.PartnerInformasjonService
 import org.amshove.kluent.shouldBe
 import org.spekframework.spek2.Spek
@@ -43,13 +39,8 @@ class BehandlerApiSpek : Spek({
         val path = "src/test/resources/jwkset.json"
         val uri = Paths.get(path).toUri().toURL()
         val jwkProvider = JwkProviderBuilder(uri).build()
-        receiver.application.install(ContentNegotiation) {
-            jackson {
-                registerModule(JavaTimeModule())
-                registerKotlinModule()
-            }
-        }
-        receiver.application.setupAuth(environment, jwkProvider)
+        receiver.application.installContentNegotiation()
+        receiver.application.installJwtAuthentication(environment, jwkProvider)
         receiver.application.routing { authenticate { registerBehandlerApi(partnerInformasjonService) } }
 
         return receiver.block()

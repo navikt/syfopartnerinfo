@@ -10,9 +10,9 @@ import no.nav.syfo.Environment
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-val log: Logger = LoggerFactory.getLogger("no.nav.syfo.smpapirregler.authentication")
+val log: Logger = LoggerFactory.getLogger("no.nav.syfo.application.authentication")
 
-fun Application.setupAuth(environment: Environment, jwkProvider: JwkProvider) {
+fun Application.installJwtAuthentication(environment: Environment, jwkProvider: JwkProvider) {
     install(Authentication) {
         jwt {
             verifier(jwkProvider, environment.jwtIssuer)
