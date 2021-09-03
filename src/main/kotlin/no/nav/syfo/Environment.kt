@@ -4,11 +4,6 @@ data class Environment(
     val applicationPort: Int = getEnvVar("APPLICATION_PORT", "8080").toInt(),
     val applicationThreads: Int = getEnvVar("APPLICATION_THREADS", "1").toInt(),
     val applicationName: String = getEnvVar("NAIS_APP_NAME", "syfopartnerinfo"),
-    val aadAccessTokenUrl: String = getEnvVar("AADACCESSTOKEN_URL"),
-    val aadDiscoveryUrl: String = getEnvVar("AADDISCOVERY_URL"),
-    val jwkKeysUrl: String = getEnvVar("JWKKEYS_URL", "https://login.microsoftonline.com/common/discovery/keys"),
-    val jwtIssuer: String = getEnvVar("JWT_ISSUER"),
-    val clientId: String = getEnvVar("CLIENT_ID"),
 
     val azureAppClientId: String = getEnvVar("AZURE_APP_CLIENT_ID"),
     val azureOpenIdConfigJwksUri: String = getEnvVar("AZURE_OPENID_CONFIG_JWKS_URI"),
@@ -18,9 +13,6 @@ data class Environment(
     val databasePrefix: String = getEnvVar("DATABASE_PREFIX"),
     val databaseUsername: String = getEnvVar("EMOTTAK_USERNAME"),
     val databasePassword: String = getEnvVar("EMOTTAK_PASSWORD"),
-    val appIds: List<String> = getEnvVar("ALLOWED_APP_IDS", "")
-            .split(",")
-            .map { it.trim() }
 )
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =

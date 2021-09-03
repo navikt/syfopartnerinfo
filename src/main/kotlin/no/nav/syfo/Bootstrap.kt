@@ -18,12 +18,7 @@ val log: Logger = LoggerFactory.getLogger("no.nav.syfo.syfopartnerinfo")
 fun main() {
     val environment = Environment()
 
-    val jwkProviderV1 = JwkProviderBuilder(URL(environment.jwkKeysUrl))
-        .cached(10, 24, TimeUnit.HOURS)
-        .rateLimited(10, 1, TimeUnit.MINUTES)
-        .build()
-
-    val jwkProviderV2 = JwkProviderBuilder(URL(environment.azureOpenIdConfigJwksUri))
+    val jwkProvider = JwkProviderBuilder(URL(environment.azureOpenIdConfigJwksUri))
         .cached(10, 24, TimeUnit.HOURS)
         .rateLimited(10, 1, TimeUnit.MINUTES)
         .build()
@@ -38,8 +33,7 @@ fun main() {
         apiModule(
             environment = environment,
             applicationState = applicationState,
-            jwkProviderV1 = jwkProviderV1,
-            jwkProviderV2 = jwkProviderV2,
+            jwkProvider = jwkProvider,
             partnerInformasjonService = partnerInformasjonService
         )
     }

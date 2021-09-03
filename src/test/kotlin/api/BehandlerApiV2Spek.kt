@@ -29,7 +29,7 @@ class BehandlerApiV2Spek : Spek({
     describe("Validate elektroniskAbonoment with authentication") {
         withTestApplicationForApi(TestApplicationEngine()) {
             it("Should return 401 Unauthorized") {
-                with(handleRequest(HttpMethod.Get, "$API_BASE_PATH$v1BasePath$behandlerV2BasePath") {
+                with(handleRequest(HttpMethod.Get, "$API_BASE_PATH$v2BasePath$behandlerV2BasePath") {
                 }) {
                     response.status() shouldBe HttpStatusCode.Unauthorized
                 }
