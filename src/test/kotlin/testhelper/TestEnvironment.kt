@@ -2,9 +2,27 @@ package testhelper
 
 import com.auth0.jwk.JwkProvider
 import com.auth0.jwk.JwkProviderBuilder
+import io.ktor.application.*
 import no.nav.syfo.Environment
 import no.nav.syfo.application.ApplicationState
+import no.nav.syfo.application.apiModule
+import no.nav.syfo.services.PartnerInformasjonService
 import java.nio.file.Paths
+
+fun Application.testApiModule(
+    partnerInformasjonService: PartnerInformasjonService,
+) {
+    val environment = testEnvironment()
+    val applicationState = testApplicationState()
+    val jwkProvider = testJwkProviderV1()
+    apiModule(
+        environment = environment,
+        applicationState = applicationState,
+        jwkProviderV1 = jwkProvider,
+        partnerInformasjonService = partnerInformasjonService
+    )
+}
+
 
 fun testEnvironment() = Environment(8080,
     jwtIssuer = "https://sts.issuer.net/myid",

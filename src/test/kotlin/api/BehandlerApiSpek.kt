@@ -8,26 +8,19 @@ import io.ktor.server.testing.*
 import io.mockk.mockk
 import no.nav.syfo.aksessering.api.*
 import no.nav.syfo.application.API_BASE_PATH
-import no.nav.syfo.application.apiModule
 import no.nav.syfo.services.PartnerInformasjonService
 import org.amshove.kluent.shouldBe
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import testhelper.*
+import testhelper.testApiModule
 
 class BehandlerApiSpek : Spek({
-    val partnerInformasjonService: PartnerInformasjonService = mockk()
+    val partnerInformasjonService = mockk<PartnerInformasjonService>()
     io.mockk.coEvery { partnerInformasjonService.finnPartnerInformasjon(any()) } returns getListPartnerInformasjon()
     fun withTestApplicationForApi(receiver: TestApplicationEngine, block: TestApplicationEngine.() -> Unit) {
         receiver.start()
-        val environment = testEnvironment()
-        val applicationState = testApplicationState()
-        val jwkProvider = testJwkProviderV1()
-        receiver.application.apiModule(
-            environment = environment,
-            applicationState = applicationState,
-            jwkProviderV1 = jwkProvider,
-            partnerInformasjonService = partnerInformasjonService
+        receiver.application.testApiModule(
+            partnerInformasjonService = partnerInformasjonService,
         )
         return receiver.block()
     }
