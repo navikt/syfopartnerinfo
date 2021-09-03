@@ -9,6 +9,11 @@ data class Environment(
     val jwkKeysUrl: String = getEnvVar("JWKKEYS_URL", "https://login.microsoftonline.com/common/discovery/keys"),
     val jwtIssuer: String = getEnvVar("JWT_ISSUER"),
     val clientId: String = getEnvVar("CLIENT_ID"),
+
+    val azureAppClientId: String = getEnvVar("AZURE_APP_CLIENT_ID"),
+    val azureOpenIdConfigJwksUri: String = getEnvVar("AZURE_OPENID_CONFIG_JWKS_URI"),
+    val azureOpenIdConfigIssuer: String = getEnvVar("AZURE_OPENID_CONFIG_ISSUER"),
+
     val databaseUrl: String = getEnvVar("EMOTTAK_JDBC_URL"),
     val databasePrefix: String = getEnvVar("DATABASE_PREFIX"),
     val databaseUsername: String = getEnvVar("EMOTTAK_USERNAME"),

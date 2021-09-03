@@ -19,6 +19,7 @@ fun Application.testApiModule(
         environment = environment,
         applicationState = applicationState,
         jwkProviderV1 = jwkProvider,
+        jwkProviderV2 = jwkProvider,
         partnerInformasjonService = partnerInformasjonService
     )
 }
@@ -30,6 +31,9 @@ fun testEnvironment() = Environment(8080,
     clientId = "1",
     aadAccessTokenUrl = "",
     aadDiscoveryUrl = "",
+    azureAppClientId = "azureAppClientId",
+    azureOpenIdConfigJwksUri = "azureOpenIdConfigJwksUri",
+    azureOpenIdConfigIssuer = "azureOpenIdConfigIssuer",
     databaseUrl = "",
     databasePrefix = "",
     databaseUsername = "",

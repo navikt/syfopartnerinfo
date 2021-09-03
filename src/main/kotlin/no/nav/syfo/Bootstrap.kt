@@ -23,6 +23,11 @@ fun main() {
         .rateLimited(10, 1, TimeUnit.MINUTES)
         .build()
 
+    val jwkProviderV2 = JwkProviderBuilder(URL(environment.azureOpenIdConfigJwksUri))
+        .cached(10, 24, TimeUnit.HOURS)
+        .rateLimited(10, 1, TimeUnit.MINUTES)
+        .build()
+
     val applicationState = ApplicationState()
 
     val database = Database(environment)
@@ -34,6 +39,7 @@ fun main() {
             environment = environment,
             applicationState = applicationState,
             jwkProviderV1 = jwkProviderV1,
+            jwkProviderV2 = jwkProviderV2,
             partnerInformasjonService = partnerInformasjonService
         )
     }
