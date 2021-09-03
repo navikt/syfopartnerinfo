@@ -12,9 +12,13 @@ import org.slf4j.LoggerFactory
 
 val log: Logger = LoggerFactory.getLogger("no.nav.syfo.application.authentication")
 
-fun Application.installJwtAuthentication(environment: Environment, jwkProvider: JwkProvider) {
+fun Application.installJwtAuthenticationV1(
+    environment: Environment,
+    jwtIssuerType: JwtIssuerType,
+    jwkProvider: JwkProvider
+) {
     install(Authentication) {
-        jwt {
+        jwt(name = jwtIssuerType.name) {
             verifier(jwkProvider, environment.jwtIssuer)
             validate { credentials ->
                 val appId: String = credentials.payload.getClaim("appid").asString()
