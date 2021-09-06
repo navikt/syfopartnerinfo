@@ -5,60 +5,26 @@ import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.auth.jwt.*
 import net.logstash.logback.argument.StructuredArguments
-import no.nav.syfo.Environment
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 val log: Logger = LoggerFactory.getLogger("no.nav.syfo.application.authentication")
 
 fun Application.installJwtAuthentication(
-    environment: Environment,
-    v1JwkProvider: JwkProvider,
-    v2AcceptedAudienceList: List<String>,
-    v2JwtIssuer: String,
-    v2JwkProvider: JwkProvider,
+    acceptedAudienceList: List<String>,
+    jwtIssuer: String,
+    jwkProvider: JwkProvider,
 ) {
     install(Authentication) {
-        configureJwtV1(
-            environment = environment,
-            jwkProvider = v1JwkProvider,
-        )
-        configureJwtV2(
-            acceptedAudienceList = v2AcceptedAudienceList,
-            jwtIssuer = v2JwtIssuer,
-            jwkProvider = v2JwkProvider,
+        configureJwt(
+            acceptedAudienceList = acceptedAudienceList,
+            jwtIssuer = jwtIssuer,
+            jwkProvider = jwkProvider,
         )
     }
 }
 
-fun Authentication.Configuration.configureJwtV1(
-    environment: Environment,
-    jwkProvider: JwkProvider
-) {
-    jwt(name = JwtIssuerType.INTERNAL_AZUREAD_VEILEDER_V1.name) {
-        verifier(jwkProvider, environment.jwtIssuer)
-        validate { credentials ->
-            val appId: String = credentials.payload.getClaim("appid").asString()
-            log.info("authorization attempt for $appId")
-
-            val envappids = environment.appIds.joinToString()
-            log.info("appidid $appId list $envappids")
-
-            val clientId = environment.appIds
-            val aud = credentials.payload.audience
-            log.info("clientid $clientId,  aud $aud")
-
-            if (appId in environment.appIds && environment.clientId in credentials.payload.audience) {
-                log.info("authorization ok")
-                return@validate JWTPrincipal(credentials.payload)
-            }
-            log.info("authorization failed")
-            return@validate null
-        }
-    }
-}
-
-fun Authentication.Configuration.configureJwtV2(
+fun Authentication.Configuration.configureJwt(
     acceptedAudienceList: List<String>,
     jwtIssuer: String,
     jwkProvider: JwkProvider,

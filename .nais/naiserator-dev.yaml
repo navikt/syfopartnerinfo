@@ -55,15 +55,5 @@ spec:
     - "https://syfopartnerinfo.dev.intern.nav.no"
     - "https://syfopartnerinfo.nais.preprod.local"
   env:
-    - name: CLIENT_ID
-      value: 077b7904-dec5-4d2e-bf69-bb17f56658c2
-    - name: AADACCESSTOKEN_URL
-      value: https://login.microsoftonline.com/navq.onmicrosoft.com/oauth2/token
-    - name: AADDISCOVERY_URL
-      value: https://login.microsoftonline.com/navq.onmicrosoft.com/.well-known/openid-configuration
-    - name: JWT_ISSUER
-      value: https://sts.windows.net/966ac572-f5b7-4bbe-aa88-c76419c0f851/
     - name: DATABASE_PREFIX
       value: nmt3
-    - name: ALLOWED_APP_IDS
-      value: a99ce657-bce8-4f11-8dd6-5624038f4820,f5510c3d-2510-444d-91a2-5790c1ec39a4
