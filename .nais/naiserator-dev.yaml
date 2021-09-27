@@ -54,6 +54,7 @@ spec:
   ingresses:
     - "https://syfopartnerinfo.dev.intern.nav.no"
     - "https://syfopartnerinfo.nais.preprod.local"
+    - "https://syfopartnerinfo.dev-fss-pub.nais.io"
   env:
     - name: DATABASE_PREFIX
       value: nmt3

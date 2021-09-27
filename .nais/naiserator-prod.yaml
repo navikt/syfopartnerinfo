@@ -54,6 +54,7 @@ spec:
   ingresses:
     - "https://syfopartnerinfo.intern.nav.no"
     - "https://syfopartnerinfo.nais.adeo.no"
+    - "https://syfopartnerinfo.prod-fss-pub.nais.io"
   env:
     - name: DATABASE_PREFIX
       value: nmp5
