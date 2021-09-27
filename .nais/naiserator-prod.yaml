@@ -39,6 +39,9 @@ spec:
         - application: fastlegerest
           namespace: teamsykefravr
           cluster: prod-fss
+        - application: isdialogmelding
+          namespace: teamsykefravr
+          cluster: prod-gcp
   azure:
     application:
       enabled: true
@@ -54,6 +57,7 @@ spec:
   ingresses:
     - "https://syfopartnerinfo.intern.nav.no"
     - "https://syfopartnerinfo.nais.adeo.no"
+    - "https://syfopartnerinfo.prod-fss-pub.nais.io"
   env:
     - name: DATABASE_PREFIX
       value: nmp5
