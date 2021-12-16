@@ -15,7 +15,7 @@ object Versions {
     const val nimbusjosejwt = "9.15.2"
     const val ojdbc8 = "19.3.0.0"
     const val prometheus = "0.9.0"
-    const val spek = "2.0.15"
+    const val spek = "2.0.17"
     const val spekjunit = "1.1.5"
 
     const val javaxAnnotationApi = "1.3.2"
