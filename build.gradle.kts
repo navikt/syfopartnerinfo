@@ -7,8 +7,8 @@ object Versions {
     const val coroutines = "1.4.2"
     const val hikari = "3.4.5"
     const val jackson = "2.11.3"
-    const val kluent = "1.61"
-    const val ktor = "1.3.2"
+    const val kluent = "1.68"
+    const val ktor = "1.4.0"
     const val logback = "1.2.3"
     const val logstashEncoder = "6.3"
     const val mockk = "1.10.5"
@@ -36,7 +36,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    jcenter()
     maven(url = "https://dl.bintray.com/kotlin/ktor")
     maven(url = "https://dl.bintray.com/spekframework/spek-dev")
     maven(url = "https://kotlin.bintray.com/kotlinx")
