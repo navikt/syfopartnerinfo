@@ -9,7 +9,7 @@ object Versions {
     const val hikari = "3.4.5"
     const val jackson = "2.11.3"
     const val kluent = "1.68"
-    const val ktor = "1.5.4"
+    const val ktor = "1.6.7"
     const val logback = "1.2.3"
     const val logstashEncoder = "6.3"
     const val mockk = "1.12.1"
