@@ -11,7 +11,7 @@ object Versions {
     const val ktor = "1.4.3"
     const val logback = "1.2.3"
     const val logstashEncoder = "6.3"
-    const val mockk = "1.10.5"
+    const val mockk = "1.12.1"
     const val nimbusjosejwt = "9.15.2"
     const val ojdbc8 = "19.3.0.0"
     const val prometheus = "0.9.0"
