@@ -6,7 +6,7 @@ version = "1.0.0"
 
 object Versions {
     const val hikari = "3.4.5"
-    const val jackson = "2.11.3"
+    const val jackson = "2.13.0"
     const val kluent = "1.68"
     const val ktor = "1.6.7"
     const val logback = "1.2.8"
