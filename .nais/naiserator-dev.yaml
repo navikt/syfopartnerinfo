@@ -38,9 +38,6 @@ spec:
       rules:
         - application: fastlegerest
           namespace: teamsykefravr
-          cluster: dev-fss
-        - application: fastlegerest
-          namespace: teamsykefravr
           cluster: dev-gcp
         - application: isdialogmelding
           namespace: teamsykefravr
