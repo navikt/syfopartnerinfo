@@ -5,7 +5,6 @@ group = "no.nav.syfo"
 version = "1.0.0"
 
 object Versions {
-    const val coroutines = "1.4.2"
     const val hikari = "3.4.5"
     const val jackson = "2.11.3"
     const val kluent = "1.68"
@@ -37,14 +36,11 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven(url = "https://kotlin.bintray.com/kotlinx")
 }
 
 dependencies {
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib"))
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.coroutines}")
 
     implementation ("io.ktor:ktor-auth:${Versions.ktor}")
     implementation ("io.ktor:ktor-auth-jwt:${Versions.ktor}")
