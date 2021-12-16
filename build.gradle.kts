@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "no.nav.syfo"
@@ -28,7 +29,7 @@ object Versions {
 }
 
 plugins {
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.6.10"
     id("org.jmailen.kotlinter") version "2.1.1"
     id("com.diffplug.gradle.spotless") version "3.24.0"
     id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -104,6 +105,12 @@ tasks {
     }
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "11"
+    }
+
+    withType<ShadowJar> {
+        archiveBaseName.set("app")
+        archiveClassifier.set("")
+        archiveVersion.set("")
     }
 
     withType<Test> {
