@@ -5,7 +5,7 @@ group = "no.nav.syfo"
 version = "1.0.0"
 
 object Versions {
-    const val hikari = "3.4.5"
+    const val hikari = "5.0.0"
     const val jackson = "2.13.0"
     const val kluent = "1.68"
     const val ktor = "1.6.7"
