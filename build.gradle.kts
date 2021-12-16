@@ -45,6 +45,7 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("reflect"))
     implementation(kotlin("stdlib"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:${Versions.coroutines}")
