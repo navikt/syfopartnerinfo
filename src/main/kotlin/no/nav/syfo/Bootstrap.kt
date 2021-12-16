@@ -3,7 +3,6 @@ package no.nav.syfo
 import com.auth0.jwk.JwkProviderBuilder
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.util.*
 import no.nav.syfo.application.*
 import no.nav.syfo.db.Database
 import no.nav.syfo.services.PartnerInformasjonService
@@ -14,7 +13,6 @@ import java.util.concurrent.TimeUnit
 
 val log: Logger = LoggerFactory.getLogger("no.nav.syfo.syfopartnerinfo")
 
-@KtorExperimentalAPI
 fun main() {
     val environment = Environment()
 
