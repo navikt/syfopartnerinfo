@@ -29,9 +29,8 @@ object Versions {
 
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("org.jmailen.kotlinter") version "2.1.1"
-    id("com.diffplug.gradle.spotless") version "3.24.0"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.1"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
 repositories {
