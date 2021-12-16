@@ -17,14 +17,6 @@ object Versions {
     const val prometheus = "0.9.0"
     const val spek = "2.0.17"
     const val spekjunit = "1.1.5"
-
-    const val javaxAnnotationApi = "1.3.2"
-    const val javaxActivation = "1.1.1"
-    const val javaxJaxwsApi = "2.2.1"
-    const val jaxbApi = "2.4.0-b180830.0359"
-    const val jaxbBasicAnt = "1.11.1"
-    const val jaxbRuntime = "2.4.0-b180830.0438"
-    const val jaxwsTools = "2.3.1"
 }
 
 plugins {
@@ -55,23 +47,12 @@ dependencies {
     implementation("io.prometheus:simpleclient_common:${Versions.prometheus}")
 
     // (De-)serialization
-    implementation ("com.fasterxml.jackson.module:jackson-module-jaxb-annotations:${Versions.jackson}")
     implementation ("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.jackson}")
-    implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${Versions.jackson}")
     implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")
 
     // Database
     implementation ("com.oracle.ojdbc:ojdbc8:${Versions.ojdbc8}")
     implementation ("com.zaxxer:HikariCP:${Versions.hikari}")
-
-    implementation("javax.activation:activation:${Versions.javaxActivation}")
-    implementation("javax.annotation:javax.annotation-api:${Versions.javaxAnnotationApi}")
-    implementation("javax.xml.ws:jaxws-api:${Versions.javaxJaxwsApi}")
-    implementation("javax.xml.bind:jaxb-api:${Versions.jaxbApi}")
-    implementation("org.glassfish.jaxb:jaxb-runtime:${Versions.jaxbRuntime}")
-    implementation("com.sun.xml.ws:jaxws-tools:${Versions.jaxwsTools}") {
-        exclude(group = "com.sun.xml.ws", module = "policy}")
-    }
 
     testImplementation ("com.nimbusds:nimbus-jose-jwt:${Versions.nimbusjosejwt}")
     testImplementation ("io.ktor:ktor-server-test-host:${Versions.ktor}")
