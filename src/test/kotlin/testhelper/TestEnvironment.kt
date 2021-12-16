@@ -23,8 +23,8 @@ fun Application.testApiModule(
     )
 }
 
-
-fun testEnvironment() = Environment(8080,
+fun testEnvironment() = Environment(
+    8080,
     azureAppClientId = "azureAppClientId",
     azureOpenIdConfigJwksUri = "azureOpenIdConfigJwksUri",
     azureOpenIdConfigIssuer = "azureOpenIdConfigIssuer",

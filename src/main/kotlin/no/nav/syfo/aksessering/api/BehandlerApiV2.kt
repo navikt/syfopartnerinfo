@@ -12,7 +12,9 @@ const val v2BasePath = "/v2"
 const val behandlerV2BasePath = "/behandler"
 const val behandlerV2QueryParamHerid = "herid"
 
-fun Route.registerBehandlerApiV2(partnerInformasjonService: PartnerInformasjonService) {
+fun Route.registerBehandlerApiV2(
+    partnerInformasjonService: PartnerInformasjonService,
+) {
     route(v2BasePath) {
         get(behandlerV2BasePath) {
             val herid = call.request.queryParameters[behandlerV2QueryParamHerid]

@@ -20,7 +20,7 @@ fun Application.apiModule(
     environment: Environment,
     applicationState: ApplicationState,
     jwkProvider: JwkProvider,
-    partnerInformasjonService: PartnerInformasjonService
+    partnerInformasjonService: PartnerInformasjonService,
 ) {
     installJwtAuthentication(
         acceptedAudienceList = listOf(environment.azureAppClientId),

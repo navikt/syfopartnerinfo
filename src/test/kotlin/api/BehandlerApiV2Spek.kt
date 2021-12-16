@@ -29,8 +29,12 @@ class BehandlerApiV2Spek : Spek({
     describe("Validate elektroniskAbonoment with authentication") {
         withTestApplicationForApi(TestApplicationEngine()) {
             it("Should return 401 Unauthorized") {
-                with(handleRequest(HttpMethod.Get, "$API_BASE_PATH$v2BasePath$behandlerV2BasePath") {
-                }) {
+                with(
+                    handleRequest(
+                        HttpMethod.Get,
+                        "$API_BASE_PATH$v2BasePath$behandlerV2BasePath",
+                    ) {}
+                ) {
                     response.status() shouldBe HttpStatusCode.Unauthorized
                 }
             }
@@ -41,12 +45,17 @@ class BehandlerApiV2Spek : Spek({
                     audience = testEnvironment().azureAppClientId,
                     issuer = testEnvironment().azureOpenIdConfigIssuer,
                 )
-                with(handleRequest(HttpMethod.Get, "$API_BASE_PATH$v2BasePath$behandlerV2BasePath?$behandlerV2QueryParamHerid=987654321") {
-                    addHeader(
-                        Authorization,
-                        "Bearer $token"
-                    )
-                }) {
+                with(
+                    handleRequest(
+                        HttpMethod.Get,
+                        "$API_BASE_PATH$v2BasePath$behandlerV2BasePath?$behandlerV2QueryParamHerid=987654321",
+                    ) {
+                        addHeader(
+                            Authorization,
+                            "Bearer $token",
+                        )
+                    }
+                ) {
                     response.status() shouldBe HttpStatusCode.OK
                 }
             }

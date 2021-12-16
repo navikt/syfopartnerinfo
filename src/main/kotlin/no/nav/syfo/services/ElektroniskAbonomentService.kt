@@ -5,7 +5,7 @@ import no.nav.syfo.db.DatabaseInterface
 
 class ElektroniskAbonomentService(
     private val database: DatabaseInterface,
-    private val databasePrefix: String
+    private val databasePrefix: String,
 ) {
     fun finnParnterInformasjon(herid: String): List<ElektroniskAbonoment> = database.hentElektroniskAbonoment(herid, databasePrefix)
 }

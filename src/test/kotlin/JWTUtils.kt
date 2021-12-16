@@ -20,7 +20,7 @@ fun genereateJWT(
     consumerClientId: String,
     audience: String,
     issuer: String = "https://sts.issuer.net/myid",
-    expiry: LocalDateTime? = LocalDateTime.now().plusHours(1)
+    expiry: LocalDateTime? = LocalDateTime.now().plusHours(1),
 ): String? {
     val now = Date()
     val key = getDefaultRSAKey()

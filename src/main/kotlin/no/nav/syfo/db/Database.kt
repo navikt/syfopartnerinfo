@@ -2,9 +2,9 @@ package no.nav.syfo.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import no.nav.syfo.Environment
 import java.sql.Connection
 import java.sql.ResultSet
-import no.nav.syfo.Environment
 
 class Database(private val env: Environment) : DatabaseInterface {
 
@@ -14,15 +14,17 @@ class Database(private val env: Environment) : DatabaseInterface {
         get() = dataSource.connection
 
     init {
-        dataSource = HikariDataSource(HikariConfig().apply {
-            jdbcUrl = env.databaseUrl
-            username = env.databaseUsername
-            password = env.databasePassword
-            maximumPoolSize = 3
-            isAutoCommit = false
-            driverClassName = "oracle.jdbc.OracleDriver"
-            validate()
-        })
+        dataSource = HikariDataSource(
+            HikariConfig().apply {
+                jdbcUrl = env.databaseUrl
+                username = env.databaseUsername
+                password = env.databasePassword
+                maximumPoolSize = 3
+                isAutoCommit = false
+                driverClassName = "oracle.jdbc.OracleDriver"
+                validate()
+            }
+        )
     }
 }
 

@@ -1,8 +1,6 @@
-import io.ktor.http.HttpMethod
-import io.ktor.http.HttpStatusCode
-import io.ktor.routing.routing
-import io.ktor.server.testing.TestApplicationEngine
-import io.ktor.server.testing.handleRequest
+import io.ktor.http.*
+import io.ktor.routing.*
+import io.ktor.server.testing.*
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.api.registerNaisApi
 import org.amshove.kluent.shouldBeEqualTo
@@ -17,7 +15,9 @@ object SelfTestSpek : Spek({
             val applicationState = ApplicationState()
             applicationState.ready = true
             applicationState.alive = true
-            application.routing { registerNaisApi(applicationState) }
+            application.routing {
+                registerNaisApi(applicationState)
+            }
 
             it("Returns ok on is_alive") {
                 with(handleRequest(HttpMethod.Get, "/is_alive")) {
@@ -39,7 +39,9 @@ object SelfTestSpek : Spek({
             val applicationState = ApplicationState()
             applicationState.ready = false
             applicationState.alive = false
-            application.routing { registerNaisApi(applicationState) }
+            application.routing {
+                registerNaisApi(applicationState)
+            }
 
             it("Returns internal server error when liveness check fails") {
                 with(handleRequest(HttpMethod.Get, "/is_alive")) {
