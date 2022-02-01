@@ -47,7 +47,6 @@ dependencies {
     implementation("io.prometheus:simpleclient_common:${Versions.prometheus}")
 
     // (De-)serialization
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.jackson}")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")
 
     // Database
