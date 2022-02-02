@@ -5,14 +5,14 @@ group = "no.nav.syfo"
 version = "1.0.0"
 
 object Versions {
-    const val hikari = "5.0.0"
-    const val jackson = "2.13.0"
+    const val hikari = "5.0.1"
+    const val jackson = "2.13.1"
     const val kluent = "1.68"
     const val ktor = "1.6.7"
-    const val logback = "1.2.9"
+    const val logback = "1.2.10"
     const val logstashEncoder = "7.0.1"
-    const val mockk = "1.12.1"
-    const val nimbusjosejwt = "9.15.2"
+    const val mockk = "1.12.2"
+    const val nimbusjosejwt = "9.18"
     const val ojdbc8 = "19.3.0.0"
     const val prometheus = "0.9.0"
     const val spek = "2.0.17"
@@ -21,8 +21,8 @@ object Versions {
 
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("com.github.johnrengelman.shadow") version "7.1.1"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
 repositories {
@@ -47,7 +47,6 @@ dependencies {
     implementation("io.prometheus:simpleclient_common:${Versions.prometheus}")
 
     // (De-)serialization
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.jackson}")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")
 
     // Database
