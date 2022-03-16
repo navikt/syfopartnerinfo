@@ -9,13 +9,13 @@ object Versions {
     const val jackson = "2.13.1"
     const val kluent = "1.68"
     const val ktor = "1.6.8"
-    const val logback = "1.2.10"
+    const val logback = "1.2.11"
     const val logstashEncoder = "7.0.1"
-    const val micrometerRegistry = "1.8.2"
+    const val micrometerRegistry = "1.8.3"
     const val mockk = "1.12.2"
-    const val nimbusjosejwt = "9.18"
+    const val nimbusjosejwt = "9.21"
     const val ojdbc8 = "19.3.0.0"
-    const val spek = "2.0.17"
+    const val spek = "2.0.18"
     const val spekjunit = "1.1.5"
 }
 
