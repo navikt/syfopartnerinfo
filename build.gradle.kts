@@ -12,7 +12,7 @@ object Versions {
     const val logback = "1.2.11"
     const val logstashEncoder = "7.0.1"
     const val micrometerRegistry = "1.8.3"
-    const val mockk = "1.12.2"
+    const val mockk = "1.12.3"
     const val nimbusjosejwt = "9.21"
     const val ojdbc8 = "19.3.0.0"
     const val spek = "2.0.18"
