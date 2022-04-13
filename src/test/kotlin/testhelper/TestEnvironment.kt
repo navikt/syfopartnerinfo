@@ -2,7 +2,7 @@ package testhelper
 
 import com.auth0.jwk.JwkProvider
 import com.auth0.jwk.JwkProviderBuilder
-import io.ktor.application.*
+import io.ktor.server.application.*
 import no.nav.syfo.Environment
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.apiModule
