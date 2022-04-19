@@ -1,11 +1,11 @@
 package no.nav.syfo.application
 
 import com.auth0.jwk.JwkProvider
-import io.ktor.application.*
-import io.ktor.auth.*
-import io.ktor.features.*
-import io.ktor.request.*
-import io.ktor.routing.*
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.plugins.callloging.*
+import io.ktor.server.request.*
+import io.ktor.server.routing.*
 import no.nav.syfo.Environment
 import no.nav.syfo.aksessering.api.registerBehandlerApiV2
 import no.nav.syfo.application.api.*

@@ -1,11 +1,13 @@
 package no.nav.syfo.application.api
 
-import io.ktor.application.*
-import io.ktor.features.*
 import io.ktor.http.*
-import io.ktor.jackson.*
-import io.ktor.metrics.micrometer.*
-import io.ktor.response.*
+import io.ktor.serialization.jackson.*
+import io.ktor.server.application.*
+import io.ktor.server.metrics.micrometer.*
+import io.ktor.server.plugins.callid.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.plugins.statuspages.*
+import io.ktor.server.response.*
 import io.micrometer.core.instrument.distribution.DistributionStatisticConfig
 import no.nav.syfo.application.metric.METRICS_REGISTRY
 import no.nav.syfo.util.*
@@ -39,10 +41,12 @@ fun Application.installMetrics() {
 
 fun Application.installStatusPages() {
     install(StatusPages) {
-        exception<Throwable> { cause ->
+        exception<Throwable> { call, cause ->
+            val log = call.application.log
+
             call.respond(HttpStatusCode.InternalServerError, cause.message ?: "Unknown error")
-            val callId = getCallId()
-            val consumerId = getConsumerId()
+            val callId = call.getCallId()
+            val consumerId = call.getConsumerId()
             log.error("Caught exception, callId=$callId, consumerId=$consumerId", cause)
             throw cause
         }
