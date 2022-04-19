@@ -25,7 +25,9 @@ fun Application.installCallId() {
 
 fun Application.installContentNegotiation() {
     install(ContentNegotiation) {
-        jackson(block = configureJacksonMapper())
+        jackson {
+            configure()
+        }
     }
 }
 
