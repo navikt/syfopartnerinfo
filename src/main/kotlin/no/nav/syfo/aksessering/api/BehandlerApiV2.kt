@@ -24,7 +24,7 @@ fun Route.registerBehandlerApiV2(
                     call.respond(HttpStatusCode.BadRequest)
                 }
                 partnerInformasjonService.finnPartnerInformasjon(herid).isEmpty() -> {
-                    log.info("Fant ingen partnerInformasjon for akutell herid")
+                    log.info("Fant ingen partnerInformasjon for aktuell herid: $herid")
                     call.respond(emptyList<PartnerInformasjon>())
                 }
                 else -> {
