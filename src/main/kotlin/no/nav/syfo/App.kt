@@ -1,9 +1,11 @@
 package no.nav.syfo
 
 import com.auth0.jwk.JwkProviderBuilder
+import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import no.nav.syfo.application.*
+import no.nav.syfo.application.ApplicationState
+import no.nav.syfo.application.apiModule
 import no.nav.syfo.db.Database
 import no.nav.syfo.services.PartnerInformasjonService
 import org.slf4j.Logger
@@ -27,7 +29,7 @@ fun main() {
 
     val partnerInformasjonService = PartnerInformasjonService(database, environment.databasePrefix)
 
-    val applicationEngine = embeddedServer(Netty, environment.applicationPort) {
+    val server = embeddedServer(Netty, environment.applicationPort) {
         apiModule(
             environment = environment,
             applicationState = applicationState,
@@ -35,9 +37,16 @@ fun main() {
             partnerInformasjonService = partnerInformasjonService
         )
     }
-    val applicationServer = ApplicationServer(applicationEngine, applicationState)
 
-    applicationServer.start()
+    Runtime.getRuntime().addShutdownHook(
+        Thread {
+            server.stop(10, 10, TimeUnit.SECONDS)
+        }
+    )
 
-    applicationState.ready = true
+    server.environment.monitor.subscribe(ApplicationStarted) { application ->
+        applicationState.ready = true
+        application.environment.log.info("Application is ready, running Java VM ${Runtime.version()}")
+    }
+    server.start(wait = true)
 }
