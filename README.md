@@ -12,7 +12,7 @@ Application for getting out partner-id that has electronic communications
 
 #### Requirements
 
-* JDK 11
+* JDK 17
 
 ## Getting started
 #### Running locally
