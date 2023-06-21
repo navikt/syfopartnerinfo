@@ -7,7 +7,7 @@ object Versions {
     const val hikari = "5.0.1"
     const val jackson = "2.13.3"
     const val kluent = "1.68"
-    const val ktor = "2.0.2"
+    const val ktor = "2.3.1"
     const val logback = "1.2.11"
     const val logstashEncoder = "7.2"
     const val micrometerRegistry = "1.9.1"
@@ -19,9 +19,9 @@ object Versions {
 }
 
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.8.22"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
+    id("org.jlleitschuh.gradle.ktlint") version "11.4.0"
 }
 
 repositories {
