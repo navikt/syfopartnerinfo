@@ -5,23 +5,23 @@ version = "1.0.0"
 
 object Versions {
     const val hikari = "5.0.1"
-    const val jackson = "2.13.3"
-    const val kluent = "1.68"
-    const val ktor = "2.3.1"
-    const val logback = "1.2.11"
-    const val logstashEncoder = "7.2"
-    const val micrometerRegistry = "1.9.1"
-    const val mockk = "1.12.4"
-    const val nimbusjosejwt = "9.23"
+    const val jacksonDataType = "2.15.2"
+    const val kluent = "1.73"
+    const val ktor = "2.3.2"
+    const val logback = "1.4.7"
+    const val logstashEncoder = "7.3"
+    const val micrometerRegistry = "1.11.1"
+    const val mockk = "1.13.5"
+    const val nimbusjosejwt = "9.31"
     const val ojdbc8 = "19.3.0.0"
-    const val spek = "2.0.18"
+    const val spek = "2.0.19"
     const val spekjunit = "1.1.5"
 }
 
 plugins {
-    kotlin("jvm") version "1.8.22"
+    kotlin("jvm") version "1.9.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.jlleitschuh.gradle.ktlint") version "11.4.1"
+    id("org.jlleitschuh.gradle.ktlint") version "11.4.2"
 }
 
 repositories {
@@ -48,7 +48,7 @@ dependencies {
     implementation("io.micrometer:micrometer-registry-prometheus:${Versions.micrometerRegistry}")
 
     // (De-)serialization
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jackson}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jacksonDataType}")
 
     // Database
     implementation("com.oracle.ojdbc:ojdbc8:${Versions.ojdbc8}")
