@@ -15,7 +15,6 @@ object Versions {
     const val nimbusjosejwt = "9.31"
     const val ojdbc8 = "19.3.0.0"
     const val spek = "2.0.19"
-    const val spekjunit = "1.1.5"
 }
 
 plugins {
@@ -64,7 +63,6 @@ dependencies {
     testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.spek}") {
         exclude(group = "org.jetbrains.kotlin")
     }
-    testRuntimeOnly("org.jetbrains.spek:spek-junit-platform-engine:${Versions.spekjunit}")
 }
 
 kotlin {
