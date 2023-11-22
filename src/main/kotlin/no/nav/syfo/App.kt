@@ -47,6 +47,18 @@ fun main() {
     server.environment.monitor.subscribe(ApplicationStarted) { application ->
         applicationState.ready = true
         application.environment.log.info("Application is ready, running Java VM ${Runtime.version()}")
+        try {
+            listOf("2170", "81989", "172135", "172431").forEach {
+                val partnerIds = partnerInformasjonService.finnPartnerInformasjon(it)
+                application.environment.log.info(
+                    "Partnerids for herId $it is ${
+                    partnerIds.map { it.partnerId }.joinToString(", ")
+                    }"
+                )
+            }
+        } catch (exc: Exception) {
+            application.environment.log.error("Caught exception", exc)
+        }
     }
     server.start(wait = true)
 }
