@@ -3,19 +3,17 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 group = "no.nav.syfo"
 version = "1.0.0"
 
-object Versions {
-    const val hikari = "5.1.0"
-    const val jacksonDataType = "2.16.1"
-    const val kluent = "1.73"
-    const val ktor = "2.3.8"
-    const val logback = "1.4.14"
-    const val logstashEncoder = "7.4"
-    const val micrometerRegistry = "1.12.2"
-    const val mockk = "1.13.9"
-    const val nimbusjosejwt = "9.37.3"
-    const val ojdbc8 = "19.3.0.0"
-    const val spek = "2.0.19"
-}
+val hikari = "5.1.0"
+val jacksonDataType = "2.16.1"
+val kluent = "1.73"
+val ktor = "2.3.8"
+val logback = "1.4.14"
+val logstashEncoder = "7.4"
+val micrometerRegistry = "1.12.2"
+val mockk = "1.13.9"
+val nimbusjosejwt = "9.37.3"
+val ojdbc8 = "19.3.0.0"
+val spek = "2.0.19"
 
 plugins {
     kotlin("jvm") version "1.9.23"
@@ -31,34 +29,34 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib"))
 
-    implementation("io.ktor:ktor-serialization-jackson:${Versions.ktor}")
-    implementation("io.ktor:ktor-server-content-negotiation:${Versions.ktor}")
-    implementation("io.ktor:ktor-server-auth-jwt:${Versions.ktor}")
-    implementation("io.ktor:ktor-server-call-id:${Versions.ktor}")
-    implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
-    implementation("io.ktor:ktor-server-status-pages:${Versions.ktor}")
+    implementation("io.ktor:ktor-serialization-jackson:$ktor")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktor")
+    implementation("io.ktor:ktor-server-auth-jwt:$ktor")
+    implementation("io.ktor:ktor-server-call-id:$ktor")
+    implementation("io.ktor:ktor-server-netty:$ktor")
+    implementation("io.ktor:ktor-server-status-pages:$ktor")
 
     // Logging
-    implementation("ch.qos.logback:logback-classic:${Versions.logback}")
-    implementation("net.logstash.logback:logstash-logback-encoder:${Versions.logstashEncoder}")
+    implementation("ch.qos.logback:logback-classic:$logback")
+    implementation("net.logstash.logback:logstash-logback-encoder:$logstashEncoder")
 
     // Metrics
-    implementation("io.ktor:ktor-server-metrics-micrometer:${Versions.ktor}")
-    implementation("io.micrometer:micrometer-registry-prometheus:${Versions.micrometerRegistry}")
+    implementation("io.ktor:ktor-server-metrics-micrometer:$ktor")
+    implementation("io.micrometer:micrometer-registry-prometheus:$micrometerRegistry")
 
     // (De-)serialization
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.jacksonDataType}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataType")
 
     // Database
-    implementation("com.oracle.ojdbc:ojdbc8:${Versions.ojdbc8}")
-    implementation("com.zaxxer:HikariCP:${Versions.hikari}")
+    implementation("com.oracle.ojdbc:ojdbc8:$ojdbc8")
+    implementation("com.zaxxer:HikariCP:$hikari")
 
-    testImplementation("com.nimbusds:nimbus-jose-jwt:${Versions.nimbusjosejwt}")
-    testImplementation("io.ktor:ktor-server-tests:${Versions.ktor}")
-    testImplementation("io.mockk:mockk:${Versions.mockk}")
-    testImplementation("org.amshove.kluent:kluent:${Versions.kluent}")
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:${Versions.spek}")
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.spek}")
+    testImplementation("com.nimbusds:nimbus-jose-jwt:$nimbusjosejwt")
+    testImplementation("io.ktor:ktor-server-tests:$ktor")
+    testImplementation("io.mockk:mockk:$mockk")
+    testImplementation("org.amshove.kluent:kluent:$kluent")
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spek")
+    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spek")
 }
 
 kotlin {
