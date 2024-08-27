@@ -28,7 +28,10 @@ fun Route.registerBehandlerApiV2(
                     call.respond(emptyList<PartnerInformasjon>())
                 }
                 else -> {
-                    call.respond(partnerInformasjonService.finnPartnerInformasjon(herid))
+                    val partnerInfo = partnerInformasjonService.finnPartnerInformasjon(herid)
+                    val partnerId = partnerInfo.firstOrNull()?.partnerId
+                    log.info("Fant partnerInformasjon for aktuell herid: $herid partnerId: $partnerId")
+                    call.respond(partnerInfo)
                 }
             }
         }
