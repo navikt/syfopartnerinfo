@@ -23,10 +23,10 @@ fun getEnvVar(varName: String, defaultValue: String? = null) =
     System.getenv(varName) ?: defaultValue ?: throw RuntimeException("Missing required variable \"$varName\"")
 
 fun readDBConfig(envVar: String) =
-        Paths.get("/secrets/oracle/config/$envVar")
-            .takeIf { it.exists() }
-            ?.let { Files.readString(it) }
-            ?: "not found"
+    Paths.get("/secrets/oracle/config/$envVar")
+        .takeIf { it.exists() }
+        ?.let { Files.readString(it) }
+        ?: "not found"
 
 fun readDBCred(envVar: String) =
     Paths.get("/secrets/oracle/creds/$envVar")
