@@ -13,7 +13,7 @@ fun DatabaseInterface.hentPartnerInformasjon(
         connection.prepareStatement(
             """
                 SELECT partner.partner_id
-                FROM $databasePrefix.PARTNER partner
+                FROM PARTNER partner
                 WHERE TRIM(partner.her_id)=?
                 """
         ).use {
