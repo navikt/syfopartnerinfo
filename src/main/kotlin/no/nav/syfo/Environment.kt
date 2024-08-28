@@ -13,10 +13,10 @@ data class Environment(
     val azureOpenIdConfigJwksUri: String = getEnvVar("AZURE_OPENID_CONFIG_JWKS_URI"),
     val azureOpenIdConfigIssuer: String = getEnvVar("AZURE_OPENID_CONFIG_ISSUER"),
 
-    val databaseUrl: String = readDBConfig("EMOTTAK_JDBC_URL"),
-    val databasePrefix: String = readDBConfig("DATABASE_PREFIX"),
-    val databaseUsername: String = readDBCred("EMOTTAK_USERNAME"),
-    val databasePassword: String = readDBCred("EMOTTAK_PASSWORD"),
+    val databaseUrl: String = readDBConfig("jdbc_url"),
+    val databasePrefix: String = "", // readDBConfig("DATABASE_PREFIX"),
+    val databaseUsername: String = readDBCred("username"),
+    val databasePassword: String = readDBCred("password"),
 )
 
 fun getEnvVar(varName: String, defaultValue: String? = null) =
