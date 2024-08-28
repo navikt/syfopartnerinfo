@@ -7,13 +7,12 @@ import java.sql.ResultSet
 
 fun DatabaseInterface.hentPartnerInformasjon(
     herid: String,
-    databasePrefix: String
 ): List<PartnerInformasjon> =
     connection.use { connection ->
         connection.prepareStatement(
             """
                 SELECT partner.partner_id
-                FROM $databasePrefix.PARTNER partner
+                FROM PARTNER partner
                 WHERE TRIM(partner.her_id)=?
                 """
         ).use {

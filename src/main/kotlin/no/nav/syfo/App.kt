@@ -27,7 +27,7 @@ fun main() {
 
     val database = Database(environment)
 
-    val partnerInformasjonService = PartnerInformasjonService(database, environment.databasePrefix)
+    val partnerInformasjonService = PartnerInformasjonService(database)
 
     val server = embeddedServer(Netty, environment.applicationPort) {
         apiModule(

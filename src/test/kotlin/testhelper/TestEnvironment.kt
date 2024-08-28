@@ -29,7 +29,6 @@ fun testEnvironment() = Environment(
     azureOpenIdConfigJwksUri = "azureOpenIdConfigJwksUri",
     azureOpenIdConfigIssuer = "azureOpenIdConfigIssuer",
     databaseUrl = "",
-    databasePrefix = "",
     databaseUsername = "",
     databasePassword = ""
 )
