@@ -14,7 +14,6 @@ data class Environment(
     val azureOpenIdConfigIssuer: String = getEnvVar("AZURE_OPENID_CONFIG_ISSUER"),
 
     val databaseUrl: String = readDBConfig("jdbc_url"),
-    val databasePrefix: String = "", // readDBConfig("DATABASE_PREFIX"),
     val databaseUsername: String = readDBCred("username"),
     val databasePassword: String = readDBCred("password"),
 )

@@ -7,7 +7,6 @@ import java.sql.ResultSet
 
 fun DatabaseInterface.hentPartnerInformasjon(
     herid: String,
-    databasePrefix: String
 ): List<PartnerInformasjon> =
     connection.use { connection ->
         connection.prepareStatement(

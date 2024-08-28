@@ -7,7 +7,6 @@ import java.sql.ResultSet
 
 fun DatabaseInterface.hentElektroniskAbonoment(
     herid: String,
-    databasePrefix: String
 ): List<ElektroniskAbonoment> =
     connection.use { connection ->
         connection.prepareStatement(

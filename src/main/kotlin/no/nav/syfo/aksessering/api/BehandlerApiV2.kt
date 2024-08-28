@@ -18,19 +18,15 @@ fun Route.registerBehandlerApiV2(
     route(v2BasePath) {
         get(behandlerV2BasePath) {
             val herid = call.request.queryParameters[behandlerV2QueryParamHerid]
-            when {
-                herid.isNullOrEmpty() -> {
-                    log.info("Mangler query parameters: herid")
-                    call.respond(HttpStatusCode.BadRequest)
-                }
-                partnerInformasjonService.finnPartnerInformasjon(herid).isEmpty() -> {
+            if (herid.isNullOrEmpty()) {
+                log.info("Mangler query parameters: herid")
+                call.respond(HttpStatusCode.BadRequest)
+            } else {
+                val partnerInfo = partnerInformasjonService.finnPartnerInformasjon(herid)
+                if (partnerInfo.isEmpty()) {
                     log.info("Fant ingen partnerInformasjon for aktuell herid: $herid")
                     call.respond(emptyList<PartnerInformasjon>())
-                }
-                else -> {
-                    val partnerInfo = partnerInformasjonService.finnPartnerInformasjon(herid)
-                    val partnerId = partnerInfo.firstOrNull()?.partnerId
-                    log.info("Fant partnerInformasjon for aktuell herid: $herid partnerId: $partnerId")
+                } else {
                     call.respond(partnerInfo)
                 }
             }

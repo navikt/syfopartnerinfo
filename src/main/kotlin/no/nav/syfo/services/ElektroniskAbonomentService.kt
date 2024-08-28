@@ -7,5 +7,5 @@ class ElektroniskAbonomentService(
     private val database: DatabaseInterface,
     private val databasePrefix: String,
 ) {
-    fun finnParnterInformasjon(herid: String): List<ElektroniskAbonoment> = database.hentElektroniskAbonoment(herid, databasePrefix)
+    fun finnParnterInformasjon(herid: String): List<ElektroniskAbonoment> = database.hentElektroniskAbonoment(herid)
 }
