@@ -1,23 +1,21 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 group = "no.nav.syfo"
 version = "1.0.0"
 
 val hikari = "5.1.0"
-val jacksonDataType = "2.16.1"
+val jacksonDataType = "2.17.2"
 val kluent = "1.73"
-val ktor = "2.3.8"
-val logback = "1.4.14"
+val ktor = "2.3.12"
+val logback = "1.5.8"
 val logstashEncoder = "7.4"
-val micrometerRegistry = "1.12.2"
-val mockk = "1.13.9"
-val nimbusjosejwt = "9.37.3"
+val micrometerRegistry = "1.12.8"
+val mockk = "1.13.12"
+val nimbusjosejwt = "9.41.1"
 val ojdbc8 = "19.3.0.0"
 val spek = "2.0.19"
 
 plugins {
     kotlin("jvm") version "1.9.23"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "8.3.2"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
@@ -64,7 +62,7 @@ kotlin {
 }
 
 tasks {
-    withType<Jar> {
+    jar {
         manifest.attributes["Main-Class"] = "no.nav.syfo.AppKt"
     }
 
@@ -75,13 +73,13 @@ tasks {
         }
     }
 
-    withType<ShadowJar> {
+    shadowJar {
         archiveBaseName.set("app")
         archiveClassifier.set("")
         archiveVersion.set("")
     }
 
-    withType<Test> {
+    test {
         useJUnitPlatform {
             includeEngines("spek2")
         }
