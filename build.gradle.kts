@@ -2,20 +2,20 @@ group = "no.nav.syfo"
 version = "1.0.0"
 
 val hikari = "5.1.0"
-val jacksonDataType = "2.17.2"
+val jacksonDataType = "2.18.0"
 val kluent = "1.73"
 val ktor = "2.3.12"
 val logback = "1.5.8"
 val logstashEncoder = "7.4"
-val micrometerRegistry = "1.12.8"
+val micrometerRegistry = "1.13.5"
 val mockk = "1.13.12"
-val nimbusjosejwt = "9.41.1"
+val nimbusjosejwt = "9.41.2"
 val ojdbc8 = "19.3.0.0"
 val spek = "2.0.19"
 
 plugins {
     kotlin("jvm") version "1.9.23"
-    id("com.gradleup.shadow") version "8.3.2"
+    id("com.gradleup.shadow") version "8.3.3"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
