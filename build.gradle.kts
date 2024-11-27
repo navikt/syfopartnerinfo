@@ -14,7 +14,7 @@ val ojdbc8 = "19.3.0.0"
 val spek = "2.0.19"
 
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.20"
     id("com.gradleup.shadow") version "8.3.2"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
