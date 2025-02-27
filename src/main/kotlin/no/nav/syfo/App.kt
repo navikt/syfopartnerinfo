@@ -48,7 +48,7 @@ fun main() {
         applicationState.ready = true
         application.environment.log.info("Application is ready, running Java VM ${Runtime.version()}")
         try {
-            listOf("146997").forEach {
+            listOf("151295").forEach {
                 val partnerIds = partnerInformasjonService.finnPartnerInformasjon(it)
                 application.environment.log.info(
                     "Partnerids for herId $it is ${
