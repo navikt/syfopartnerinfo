@@ -1,7 +1,9 @@
 package no.nav.syfo
 
 import com.auth0.jwk.JwkProviderBuilder
+import com.typesafe.config.ConfigFactory
 import io.ktor.server.application.*
+import io.ktor.server.config.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import no.nav.syfo.application.ApplicationState
@@ -29,36 +31,50 @@ fun main() {
 
     val partnerInformasjonService = PartnerInformasjonService(database)
 
-    val server = embeddedServer(Netty, environment.applicationPort) {
-        apiModule(
-            environment = environment,
-            applicationState = applicationState,
-            jwkProvider = jwkProvider,
-            partnerInformasjonService = partnerInformasjonService
-        )
+    val applicationEngineEnvironment = applicationEnvironment {
+        log = LoggerFactory.getLogger("ktor.application")
+        config = HoconApplicationConfig(ConfigFactory.load())
     }
+
+    val server = embeddedServer(
+        Netty,
+        environment = applicationEngineEnvironment,
+        configure = {
+            connector {
+                port = environment.applicationPort
+            }
+            connectionGroupSize = 8
+            workerGroupSize = 8
+            callGroupSize = 16
+        },
+        module = {
+            apiModule(
+                environment = environment,
+                applicationState = applicationState,
+                jwkProvider = jwkProvider,
+                partnerInformasjonService = partnerInformasjonService
+            )
+            monitor.subscribe(ApplicationStarted) { application ->
+                applicationState.ready = true
+                application.environment.log.info("Application is ready, running Java VM ${Runtime.version()}")
+                try {
+                    listOf("151295").forEach {
+                        val partnerIds = partnerInformasjonService.finnPartnerInformasjon(it)
+                        application.environment.log.info(
+                            "Partnerids for herId $it is ${partnerIds.map { it.partnerId }.joinToString(", ")}"
+                        )
+                    }
+                } catch (exc: Exception) {
+                    application.environment.log.error("Caught exception", exc)
+                }
+            }
+        }
+    )
 
     Runtime.getRuntime().addShutdownHook(
         Thread {
             server.stop(10, 10, TimeUnit.SECONDS)
         }
     )
-
-    server.environment.monitor.subscribe(ApplicationStarted) { application ->
-        applicationState.ready = true
-        application.environment.log.info("Application is ready, running Java VM ${Runtime.version()}")
-        try {
-            listOf("151295").forEach {
-                val partnerIds = partnerInformasjonService.finnPartnerInformasjon(it)
-                application.environment.log.info(
-                    "Partnerids for herId $it is ${
-                    partnerIds.map { it.partnerId }.joinToString(", ")
-                    }"
-                )
-            }
-        } catch (exc: Exception) {
-            application.environment.log.error("Caught exception", exc)
-        }
-    }
     server.start(wait = true)
 }

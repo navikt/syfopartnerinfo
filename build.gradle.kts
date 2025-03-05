@@ -1,21 +1,21 @@
 group = "no.nav.syfo"
 version = "1.0.0"
 
-val hikari = "5.1.0"
-val jacksonDataType = "2.17.2"
+val hikari = "6.2.1"
+val jacksonDataType = "2.18.3"
 val kluent = "1.73"
-val ktor = "2.3.12"
-val logback = "1.5.8"
-val logstashEncoder = "7.4"
-val micrometerRegistry = "1.12.8"
+val ktor = "3.1.1"
+val logback = "1.5.17"
+val logstashEncoder = "8.0"
+val micrometerRegistry = "1.12.13"
 val mockk = "1.13.12"
-val nimbusjosejwt = "9.41.1"
+val nimbusjosejwt = "9.47"
 val ojdbc8 = "19.3.0.0"
 val spek = "2.0.19"
 
 plugins {
-    kotlin("jvm") version "2.0.20"
-    id("com.gradleup.shadow") version "8.3.2"
+    kotlin("jvm") version "2.1.0"
+    id("com.gradleup.shadow") version "8.3.5"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
@@ -27,12 +27,15 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib"))
 
-    implementation("io.ktor:ktor-serialization-jackson:$ktor")
-    implementation("io.ktor:ktor-server-content-negotiation:$ktor")
     implementation("io.ktor:ktor-server-auth-jwt:$ktor")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktor")
     implementation("io.ktor:ktor-server-call-id:$ktor")
-    implementation("io.ktor:ktor-server-netty:$ktor")
     implementation("io.ktor:ktor-server-status-pages:$ktor")
+    implementation("io.ktor:ktor-server-netty:$ktor")
+    implementation("io.ktor:ktor-client-apache:$ktor")
+    implementation("io.ktor:ktor-client-cio:$ktor")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor")
+    implementation("io.ktor:ktor-serialization-jackson:$ktor")
 
     // Logging
     implementation("ch.qos.logback:logback-classic:$logback")
@@ -50,7 +53,8 @@ dependencies {
     implementation("com.zaxxer:HikariCP:$hikari")
 
     testImplementation("com.nimbusds:nimbus-jose-jwt:$nimbusjosejwt")
-    testImplementation("io.ktor:ktor-server-tests:$ktor")
+    testImplementation("io.ktor:ktor-server-test-host:$ktor")
+    testImplementation("io.ktor:ktor-client-mock:$ktor")
     testImplementation("io.mockk:mockk:$mockk")
     testImplementation("org.amshove.kluent:kluent:$kluent")
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spek")
