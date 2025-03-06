@@ -24,7 +24,7 @@ object SelfTestSpek : Spek({
             testApplication {
                 setupPodApi(ApplicationState(true, true))
                 val response = client.get("/is_alive")
-                response.status shouldBeEqualTo  HttpStatusCode.OK
+                response.status shouldBeEqualTo HttpStatusCode.OK
                 response.bodyAsText() shouldBeEqualTo "I'm alive! :)"
             }
         }
