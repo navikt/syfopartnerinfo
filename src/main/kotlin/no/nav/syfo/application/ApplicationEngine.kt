@@ -3,7 +3,7 @@ package no.nav.syfo.application
 import com.auth0.jwk.JwkProvider
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
-import io.ktor.server.plugins.callloging.*
+import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.request.*
 import io.ktor.server.routing.*
 import no.nav.syfo.Environment

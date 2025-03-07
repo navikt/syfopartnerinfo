@@ -1,3 +1,5 @@
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
@@ -9,52 +11,47 @@ import org.spekframework.spek2.style.specification.describe
 
 object SelfTestSpek : Spek({
 
-    describe("Successfull liveness and readyness tests") {
-        with(TestApplicationEngine()) {
-            start()
-            val applicationState = ApplicationState()
-            applicationState.ready = true
-            applicationState.alive = true
-            application.routing {
+    fun ApplicationTestBuilder.setupPodApi(applicationState: ApplicationState) {
+        application {
+            routing {
                 registerNaisApi(applicationState)
             }
+        }
+    }
 
-            it("Returns ok on is_alive") {
-                with(handleRequest(HttpMethod.Get, "/is_alive")) {
-                    response.status() shouldBeEqualTo HttpStatusCode.OK
-                    response.content shouldBeEqualTo "I'm alive! :)"
-                }
+    describe("Successfull liveness and readyness tests") {
+        it("Returns ok on is_alive") {
+            testApplication {
+                setupPodApi(ApplicationState(true, true))
+                val response = client.get("/is_alive")
+                response.status shouldBeEqualTo HttpStatusCode.OK
+                response.bodyAsText() shouldBeEqualTo "I'm alive! :)"
             }
-            it("Returns ok in is_ready") {
-                with(handleRequest(HttpMethod.Get, "/is_ready")) {
-                    response.status() shouldBeEqualTo HttpStatusCode.OK
-                    response.content shouldBeEqualTo "I'm ready! :)"
-                }
+        }
+        it("Returns ok in is_ready") {
+            testApplication {
+                setupPodApi(ApplicationState(true, true))
+                val response = client.get("/is_ready")
+                response.status shouldBeEqualTo HttpStatusCode.OK
+                response.bodyAsText() shouldBeEqualTo "I'm ready! :)"
             }
         }
     }
     describe("Unsuccessful liveness and readyness") {
-        with(TestApplicationEngine()) {
-            start()
-            val applicationState = ApplicationState()
-            applicationState.ready = false
-            applicationState.alive = false
-            application.routing {
-                registerNaisApi(applicationState)
+        it("Returns internal server error when liveness check fails") {
+            testApplication {
+                setupPodApi(ApplicationState(false, false))
+                val response = client.get("/is_alive")
+                response.status shouldBeEqualTo HttpStatusCode.InternalServerError
+                response.bodyAsText() shouldBeEqualTo "I'm dead x_x"
             }
-
-            it("Returns internal server error when liveness check fails") {
-                with(handleRequest(HttpMethod.Get, "/is_alive")) {
-                    response.status() shouldBeEqualTo HttpStatusCode.InternalServerError
-                    response.content shouldBeEqualTo "I'm dead x_x"
-                }
-            }
-
-            it("Returns internal server error when readyness check fails") {
-                with(handleRequest(HttpMethod.Get, "/is_ready")) {
-                    response.status() shouldBeEqualTo HttpStatusCode.InternalServerError
-                    response.content shouldBeEqualTo "Please wait! I'm not ready :("
-                }
+        }
+        it("Returns internal server error when readyness check fails") {
+            testApplication {
+                setupPodApi(ApplicationState(false, false))
+                val response = client.get("/is_ready")
+                response.status shouldBeEqualTo HttpStatusCode.InternalServerError
+                response.bodyAsText() shouldBeEqualTo "Please wait! I'm not ready :("
             }
         }
     }
