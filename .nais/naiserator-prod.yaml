@@ -55,6 +55,14 @@ spec:
     - "https://syfopartnerinfo.intern.nav.no"
     - "https://syfopartnerinfo.nais.adeo.no"
     - "https://syfopartnerinfo.prod-fss-pub.nais.io"
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
+    logging:
+      destinations:
+        - id: loki
+        - id: elastic
   env:
     - name: DATABASE_PREFIX
       value: nmp5
