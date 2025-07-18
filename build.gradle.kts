@@ -1,9 +1,10 @@
+import com.adarshr.gradle.testlogger.theme.ThemeType
+
 group = "no.nav.syfo"
 version = "1.0.0"
 
 val hikari = "6.3.0"
 val jacksonDataType = "2.18.3"
-val kluent = "1.73"
 val ktor = "3.1.2"
 val logback = "1.5.18"
 val logstashEncoder = "8.1"
@@ -11,12 +12,12 @@ val micrometerRegistry = "1.12.13"
 val mockk = "1.13.17"
 val nimbusjosejwt = "10.1"
 val ojdbc8 = "19.3.0.0"
-val spek = "2.0.19"
 
 plugins {
     kotlin("jvm") version "2.1.20"
     id("com.gradleup.shadow") version "8.3.6"
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 repositories {
@@ -56,9 +57,7 @@ dependencies {
     testImplementation("io.ktor:ktor-server-test-host:$ktor")
     testImplementation("io.ktor:ktor-client-mock:$ktor")
     testImplementation("io.mockk:mockk:$mockk")
-    testImplementation("org.amshove.kluent:kluent:$kluent")
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spek")
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spek")
+    testImplementation(kotlin("test"))
 }
 
 kotlin {
@@ -84,11 +83,11 @@ tasks {
     }
 
     test {
-        useJUnitPlatform {
-            includeEngines("spek2")
-        }
-        testLogging {
-            showStandardStreams = true
+        useJUnitPlatform()
+        testlogger {
+            theme = ThemeType.STANDARD_PARALLEL
+            showFullStackTraces = true
+            showPassed = false
         }
     }
 }
