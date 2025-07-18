@@ -6,13 +6,13 @@ Application for getting out partner-id that has electronic communications
 * Kotlin
 * Ktor
 * Gradle
-* Spek
+* JUnit
 * Vault
 * Oracle DB
 
 #### Requirements
 
-* JDK 17
+* JDK 21
 
 ## Getting started
 #### Running locally
