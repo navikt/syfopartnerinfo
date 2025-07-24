@@ -5,10 +5,10 @@ import io.ktor.server.routing.*
 import io.ktor.server.testing.*
 import no.nav.syfo.application.ApplicationState
 import no.nav.syfo.application.api.registerNaisApi
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class SelfTest {
 
