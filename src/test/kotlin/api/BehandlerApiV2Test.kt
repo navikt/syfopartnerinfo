@@ -10,10 +10,10 @@ import io.mockk.mockk
 import no.nav.syfo.aksessering.api.*
 import no.nav.syfo.application.API_BASE_PATH
 import no.nav.syfo.services.PartnerInformasjonService
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import testhelper.testApiModule
 import testhelper.testEnvironment
-import kotlin.test.assertEquals
 
 class BehandlerApiV2Test {
     private val partnerInformasjonService = mockk<PartnerInformasjonService>()
