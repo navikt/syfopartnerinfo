@@ -53,7 +53,6 @@ spec:
   webproxy: true
   ingresses:
     - "https://syfopartnerinfo.dev.intern.nav.no"
-    - "https://syfopartnerinfo.nais.preprod.local"
     - "https://syfopartnerinfo.dev-fss-pub.nais.io"
   observability:
     autoInstrumentation:
