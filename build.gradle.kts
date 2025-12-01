@@ -5,7 +5,7 @@ version = "1.0.0"
 
 val hikari = "7.0.2"
 val jacksonDataType = "2.20.1"
-val ktor = "3.3.2"
+val ktor = "3.3.3"
 val logback = "1.5.21"
 val logstashEncoder = "8.1"
 val micrometerRegistry = "1.12.13"
