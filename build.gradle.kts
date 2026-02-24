@@ -9,8 +9,8 @@ val ktor = "3.3.3"
 val logback = "1.5.22"
 val logstashEncoder = "9.0"
 val micrometerRegistry = "1.12.13"
-val mockk = "1.14.7"
-val nimbusjosejwt = "10.6"
+val mockk = "1.14.9"
+val nimbusjosejwt = "10.8"
 val ojdbc8 = "19.3.0.0"
 
 plugins {
