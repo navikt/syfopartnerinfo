@@ -48,6 +48,7 @@ dependencies {
 
     // (De-)serialization
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataType")
+    implementation("tools.jackson.core:jackson-databind:$jacksonDatabindVersion")
 
     // Database
     implementation("com.oracle.ojdbc:ojdbc8:$ojdbc8")
